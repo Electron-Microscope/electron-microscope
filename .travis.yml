@@ -1,8 +1,11 @@
+os:
+  - linux
+  - osx
 language: node_js
 node_js:
-- '6'
-- '5'
-- '4'
-- 4.5.0
+  - '6'
+  - '5'
+  - '4'
+  - 4.5.0
 script: "npm run lint && npm run test:ci"
 after_success: npm run coveralls
