@@ -1,0 +1,29 @@
+@import "~@angular/material/core/style/_variables.scss";
+
+.nav-list {
+  font-family: $md-font-family;
+  font-size: 130%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10%;
+}
+
+.nav-item {
+  vertical-align: middle;
+  padding: 5% 10%;
+}
+
+.nav-icon {
+  line-height: 1;
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: 0.5em;
+}
+
+.nav-description {
+  line-height: 1;
+  vertical-align: middle;
+  display: inline-block;
+  position: relative;
+  top: 0.05em;
+}

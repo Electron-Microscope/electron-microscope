@@ -1,0 +1,15 @@
+<md-sidenav-layout class="main-layout">
+  <md-sidenav align="start" mode="over" [opened]="sidenavOpen" (close)="sidenavOpen=false" (open)="sidenavOpen=true"
+              class="sidenav">
+    <em-modules-nav></em-modules-nav>
+  </md-sidenav>
+
+  <md-toolbar color="primary">
+    <span class="toolbar-content">
+        <a (click)="sidenavOpen=true" class="menu-icon">
+          <md-icon>menu</md-icon>
+        </a>
+        <span class="title">Electron Microscope</span>
+    </span>
+  </md-toolbar>
+</md-sidenav-layout>
