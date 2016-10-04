@@ -1,3 +1,4 @@
+@import '~@angular/material/core/theming/_palette.scss';
 @import "~@angular/material/core/style/_variables.scss";
 
 .nav-list {
@@ -11,6 +12,7 @@
 .nav-item {
   vertical-align: middle;
   padding: 5% 10%;
+  color: map-get($md-light-theme-foreground, text);
 }
 
 .nav-icon {

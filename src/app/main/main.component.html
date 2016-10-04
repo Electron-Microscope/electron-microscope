@@ -1,7 +1,7 @@
 <md-sidenav-layout class="main-layout">
-  <md-sidenav align="start" mode="over" [opened]="sidenavOpen" (close)="sidenavOpen=false" (open)="sidenavOpen=true"
+  <md-sidenav #sidenav align="start" mode="over" [opened]="sidenavOpen" (close)="sidenavOpen=false" (open)="sidenavOpen=true"
               class="sidenav">
-    <em-modules-nav></em-modules-nav>
+    <em-modules-nav (moduleChosen)="sidenavOpen=false"></em-modules-nav>
   </md-sidenav>
 
   <md-toolbar color="primary">
@@ -12,4 +12,5 @@
         <span class="title">Electron Microscope</span>
     </span>
   </md-toolbar>
+  <router-outlet></router-outlet>
 </md-sidenav-layout>

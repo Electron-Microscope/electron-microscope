@@ -3,11 +3,19 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
 import { MainComponent } from './main.component';
 import { ModulesNavComponent } from './modules-nav/modules-nav.component';
+import { routing } from './main.routing';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { DiskExplorerModule } from './disk-explorer/disk-explorer.module';
+import { ProcessExplorerModule } from './process-explorer/process-explorer.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    routing,
+    DashboardModule,
+    DiskExplorerModule,
+    ProcessExplorerModule
   ],
   declarations: [
     MainComponent,
