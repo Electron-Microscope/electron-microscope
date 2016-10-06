@@ -1,31 +1,54 @@
-@import '~@angular/material/core/theming/_palette.scss';
 @import "~@angular/material/core/style/_variables.scss";
+@import "../../../theme.scss";
+
+$icon-keyline: 16px;
+$description-keyline: 72px;
+$icon-size: $md-body-font-size-base;
 
 .nav-list {
-  font-family: $md-font-family;
-  font-size: 130%;
+  font-family: "Roboto Medium", $md-font-family;
+  font-size: $md-body-font-size-base;
+
   display: flex;
   flex-direction: column;
-  margin-top: 10%;
+
+  padding-top: 64px;
 }
 
 .nav-item {
+  height: 48px;
+  line-height: 48px;
+  padding-right: 16px;
+}
+
+.nav-item-text {
+  line-height: 1;
+  display: inline-block;
   vertical-align: middle;
-  padding: 5% 10%;
-  color: map-get($md-light-theme-foreground, text);
 }
 
 .nav-icon {
-  line-height: 1;
-  vertical-align: middle;
   display: inline-block;
-  margin-right: 0.5em;
+
+  margin-left: $icon-keyline;
+
+  color: map-get(map-get($theme, foreground), icon);
 }
 
 .nav-description {
-  line-height: 1;
-  vertical-align: middle;
   display: inline-block;
   position: relative;
-  top: 0.05em;
+  top: -0.5em;
+
+  margin-left: $description-keyline - $icon-keyline - $icon-size;
+
+  text-decoration: none;
+  color: map-get(map-get($theme, foreground), text);
+}
+
+.active-module {
+  background-color: $md-ripple-background-color;
+}
+.active-module .nav-description, .active-module .nav-icon {
+  color: map-get(map-get($theme, primary), default);
 }

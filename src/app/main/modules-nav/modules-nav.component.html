@@ -1,5 +1,23 @@
 <div class="nav-list">
-  <a routerLink="/dashboard" (click)="moduleChosen.emit()" class="nav-item"><md-icon class="nav-icon">dashboard</md-icon><span class="nav-description">Dashboard</span></a>
-  <a routerLink="/process-explorer" (click)="moduleChosen.emit()" class="nav-item"><md-icon class="nav-icon">explore</md-icon><span class="nav-description">Process Explorer</span></a>
-  <a routerLink="/disk-explorer" (click)="moduleChosen.emit()" class="nav-item"><md-icon class="nav-icon">storage</md-icon><span class="nav-description">Disk Explorer</span></a>
+  <a routerLink="/dashboard" (click)="moduleChosen.emit()" class="nav-item" routerLinkActive="active-module" [routerLinkActiveOptions]="{exact:
+true}">
+    <span class="nav-item-text">
+      <md-icon class="nav-icon">dashboard</md-icon>
+      <span class="nav-description">Dashboard</span>
+    </span>
+  </a>
+  <a routerLink="/process-explorer" (click)="moduleChosen.emit()" class="nav-item" routerLinkActive="active-module" [routerLinkActiveOptions]="{exact:
+true}">
+    <span class="nav-item-text">
+      <md-icon class="nav-icon">explore</md-icon>
+      <span class="nav-description">Process Explorer</span>
+    </span>
+  </a>
+  <a routerLink="/disk-explorer" (click)="moduleChosen.emit()" class="nav-item" routerLinkActive="active-module" [routerLinkActiveOptions]="{exact:
+true}">
+    <span class="nav-item-text">
+      <md-icon class="nav-icon">storage</md-icon>
+      <span class="nav-description">Disk Explorer</span>
+    </span>
+  </a>
 </div>

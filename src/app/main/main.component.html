@@ -1,12 +1,12 @@
 <md-sidenav-layout class="main-layout">
-  <md-sidenav #sidenav align="start" mode="over" [opened]="sidenavOpen" (close)="sidenavOpen=false" (open)="sidenavOpen=true"
+  <md-sidenav #sidenav align="start" [mode]="sidenavMode" [opened]="sidenavOpen" (close)="sidenavOpen=false" (open)="sidenavOpen=true"
               class="sidenav">
     <em-modules-nav (moduleChosen)="sidenavOpen=false"></em-modules-nav>
   </md-sidenav>
 
-  <md-toolbar color="primary">
+  <md-toolbar color="primary" class="toolbar">
     <span class="toolbar-content">
-        <a (click)="sidenavOpen=true" class="menu-icon">
+        <a (click)="sidenavOpen=true" class="menu-icon" [style.display]="sidenavMode == 'side' ? 'none' : 'inline-block'">
           <md-icon>menu</md-icon>
         </a>
         <span class="title">Electron Microscope</span>

@@ -1,5 +1,18 @@
+@import '~@angular/material/core/style/_elevation.scss';
+
+$std-increment: 64px;
+
 .main-layout {
   height: 100%;
+}
+
+.sidenav {
+  width: calc(100% - #{$std-increment});
+  max-width: 5 * $std-increment;
+}
+
+.toolbar {
+  @include md-elevation(4);
 }
 
 .toolbar-content {
@@ -21,8 +34,3 @@
   position: relative;
   top: -0.055em;
 }
-
-.sidenav {
-  min-width: 20%;
-}
-
