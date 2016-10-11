@@ -1,0 +1,12 @@
+<md-card class="card">
+  <md-card-title *ngIf="title">{{title}}</md-card-title>
+  <md-card-subtitle *ngIf="subtitle">{{subtitle}}</md-card-subtitle>
+
+  <md-card-content>
+    <ng-content select="em-dashboard-card-content"></ng-content>
+  </md-card-content>
+
+  <div md-card-image><ng-content select="em-dashboard-card-graph"></ng-content></div>
+
+  <md-card-actions><ng-content select="em-dashboard-card-actions"></ng-content></md-card-actions>
+</md-card>
