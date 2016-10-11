@@ -1,13 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
+import { MaterialModule } from '@angular/material';
+import { LoadAverageComponent } from './load-average/load-average.component';
+import {
+  DashboardCardComponent, DashboardCardContentComponent,
+  DashboardCardGraphComponent, DashboardCardActionsComponent
+} from './dashboard-card/dashboard-card.component';
+import { ChartModule } from 'angular2-highcharts';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule.forRoot(),
+    ChartModule
   ],
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    LoadAverageComponent,
+    DashboardCardComponent,
+    DashboardCardContentComponent,
+    DashboardCardGraphComponent,
+    DashboardCardActionsComponent
   ],
   exports: [
     DashboardComponent
