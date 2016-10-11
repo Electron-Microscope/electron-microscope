@@ -1,3 +1,16 @@
 @import '~@angular/material/core/theming/prebuilt/indigo-pink.scss';
 $theme: $theme;
 $md-ripple-background-color: rgba(0, 0, 0, 0.0588);
+
+/// Map deep get - to access elements in $theme map
+/// @author Hugo Giraudel
+/// @access public
+/// @param {Map} $map - Map
+/// @param {Arglist} $keys - Key chain
+/// @return {*} - Desired value
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
