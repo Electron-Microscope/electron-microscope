@@ -1,0 +1,11 @@
+<em-dashboard-card title="Load Average">
+  <em-dashboard-card-content>
+    <div class="current">
+      <div class="current-title">Current</div>
+      <span class="current-element"><span class="current-label">1min.</span><span class="current-value">{{curr1.toFixed(2)}}</span></span>
+      <span class="current-element"><span class="current-label">5min.</span><span class="current-value">{{curr5.toFixed(2)}}</span></span>
+      <span class="current-element"><span class="current-label">15min.</span><span class="current-value">{{curr15.toFixed(2)}}</span></span>
+    </div>
+  </em-dashboard-card-content>
+  <em-dashboard-card-graph><chart [options]="options"></chart></em-dashboard-card-graph>
+</em-dashboard-card>
