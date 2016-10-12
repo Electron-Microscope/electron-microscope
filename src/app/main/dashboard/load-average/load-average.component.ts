@@ -1,10 +1,9 @@
 import {
-  Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild,
+  Component, OnInit, OnDestroy, ViewChild,
   AfterViewInit
 } from '@angular/core';
 import { LoadAverageService } from './shared/load-average/load-average.service';
 import { Subscription } from 'rxjs';
-import { UIChart } from 'primeng/components/chart/chart';
 import { ChartComponent } from 'angular2-highcharts';
 
 @Component({
@@ -61,7 +60,7 @@ export class LoadAverageComponent implements OnInit, AfterViewInit, OnDestroy {
   };
 
 
-  constructor(private loadAverage: LoadAverageService, private changeDetector: ChangeDetectorRef) {
+  constructor(private loadAverage: LoadAverageService) {
   }
 
   ngOnInit() {

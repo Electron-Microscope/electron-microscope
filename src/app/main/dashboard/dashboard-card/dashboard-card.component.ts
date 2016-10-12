@@ -23,10 +23,10 @@ export class DashboardCardComponent implements OnInit {
 }
 
 @Component({
-  selector: 'em-dashboard-card-graph',
+  selector: 'em-dashboard-card-chart',
   template: '<ng-content></ng-content>'
 })
-export class DashboardCardGraphComponent implements OnInit {
+export class DashboardCardChartComponent implements OnInit {
   constructor() { }
   ngOnInit() { }
 }

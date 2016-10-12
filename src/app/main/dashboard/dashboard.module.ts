@@ -5,7 +5,7 @@ import { MaterialModule } from '@angular/material';
 import { LoadAverageComponent } from './load-average/load-average.component';
 import {
   DashboardCardComponent, DashboardCardContentComponent,
-  DashboardCardGraphComponent, DashboardCardActionsComponent
+  DashboardCardActionsComponent, DashboardCardChartComponent
 } from './dashboard-card/dashboard-card.component';
 import { ChartModule } from 'angular2-highcharts';
 
@@ -20,7 +20,7 @@ import { ChartModule } from 'angular2-highcharts';
     LoadAverageComponent,
     DashboardCardComponent,
     DashboardCardContentComponent,
-    DashboardCardGraphComponent,
+    DashboardCardChartComponent,
     DashboardCardActionsComponent
   ],
   exports: [

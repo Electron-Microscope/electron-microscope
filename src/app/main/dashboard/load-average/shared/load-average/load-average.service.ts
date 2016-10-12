@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Timestamp, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { loadavg } from 'os';
 
 @Injectable()
