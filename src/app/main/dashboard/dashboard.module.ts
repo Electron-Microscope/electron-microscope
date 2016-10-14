@@ -9,6 +9,7 @@ import {
 } from './dashboard-card/dashboard-card.component';
 import { ChartModule } from 'angular2-highcharts';
 import {MemoryUsageComponent} from "./memory-usage/memory-usage.component";
+import {SystemInfoComponent} from "./system-info/system-info.component";
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import {MemoryUsageComponent} from "./memory-usage/memory-usage.component";
     DashboardCardContentComponent,
     DashboardCardChartComponent,
     DashboardCardActionsComponent,
-    MemoryUsageComponent
+    MemoryUsageComponent,
+    SystemInfoComponent
   ],
   exports: [
     DashboardComponent
