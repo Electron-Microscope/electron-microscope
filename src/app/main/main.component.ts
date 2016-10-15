@@ -12,6 +12,7 @@ export class MainComponent implements OnInit {
   constructor(private ngZone: NgZone) { }
 
   ngOnInit() {
+    this.sidenavMode = this.getSidenavMode(Number(window.innerWidth));
     window.onresize = () =>
     {
       this.ngZone.run(() => {
