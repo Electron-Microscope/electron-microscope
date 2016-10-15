@@ -5,9 +5,10 @@ import { MaterialModule } from '@angular/material';
 import { LoadAverageComponent } from './load-average/load-average.component';
 import {
   DashboardCardComponent, DashboardCardContentComponent,
-  DashboardCardActionsComponent, DashboardCardChartComponent
+  DashboardCardActionsComponent, DashboardCardChartComponent, DashboardCardDetailContentComponent
 } from './dashboard-card/dashboard-card.component';
 import { ChartModule } from 'angular2-highcharts';
+import { CpuLoadComponent } from './cpu-load/cpu-load.component';
 
 @NgModule({
   imports: [
@@ -20,8 +21,10 @@ import { ChartModule } from 'angular2-highcharts';
     LoadAverageComponent,
     DashboardCardComponent,
     DashboardCardContentComponent,
+    DashboardCardDetailContentComponent,
     DashboardCardChartComponent,
-    DashboardCardActionsComponent
+    DashboardCardActionsComponent,
+    CpuLoadComponent,
   ],
   exports: [
     DashboardComponent
