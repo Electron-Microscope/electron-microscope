@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-process-explorer',
+  selector: 'em-process-explorer',
   templateUrl: './process-explorer.component.html',
   styleUrls: ['./process-explorer.component.css']
 })

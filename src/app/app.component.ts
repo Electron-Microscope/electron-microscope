@@ -1,3 +1,5 @@
+/* tslint:disable:directive-selector-prefix */
+/* tslint:disable:component-selector-prefix */
 import { Component } from '@angular/core';
 
 @Component({

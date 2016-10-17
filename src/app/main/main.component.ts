@@ -13,8 +13,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.sidenavMode = this.getSidenavMode(Number(window.innerWidth));
-    window.onresize = () =>
-    {
+    window.onresize = () => {
       this.ngZone.run(() => {
         this.sidenavMode = this.getSidenavMode(Number(window.innerWidth));
       });
@@ -22,14 +21,12 @@ export class MainComponent implements OnInit {
   }
 
   get sidenavOpen(): boolean {
-    if (this.sidenavMode == 'side')
-      return true;
+    if (this.sidenavMode == 'side') { return true; }
     return this._sidenavOpen;
   }
 
   set sidenavOpen(value: boolean) {
-    if (this.sidenavMode != 'side')
-        this._sidenavOpen = value;
+    if (this.sidenavMode != 'side') { this._sidenavOpen = value; }
   }
 
   private getSidenavMode(width: number) {
