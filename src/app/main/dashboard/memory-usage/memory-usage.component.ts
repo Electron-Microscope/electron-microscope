@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MemoryUsageService} from "./shared/memory-usage/memory-usage.service";
 import {ChartComponent} from "angular2-highcharts";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'em-memory-usage',
@@ -13,6 +14,7 @@ import {ChartComponent} from "angular2-highcharts";
 export class MemoryUsageComponent implements OnInit {
   @ViewChild(ChartComponent)
   private chart: ChartComponent;
+  private subscriptions: Array<Subscription> = [];
 
   private interval = 1;
   private history = 600;
@@ -43,7 +45,7 @@ export class MemoryUsageComponent implements OnInit {
     },
     xAxis: {
       title: {
-        text: "Time"
+        text: "Time (s)"
       }
     },
     series: [
@@ -68,7 +70,7 @@ export class MemoryUsageComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.memoryUsage.getMemoryUsageInInterval(this.interval).subscribe(memory=> {
+    this.subscriptions.push(this.memoryUsage.getMemoryUsageInInterval(this.interval).subscribe(memory=> {
       const timestamp = `${memory.timestamp.getUTCHours()}:${memory.timestamp.getUTCMinutes()}:${memory.timestamp.getUTCSeconds()}`;
 
       this.current.free = this.byteToGigaByte(memory.free);
@@ -81,13 +83,13 @@ export class MemoryUsageComponent implements OnInit {
         }
         this.chart.chart.series[index].addPoint({
           name: timestamp,
-          x: memory.sequenceNumber,
+          x: memory.sequenceNumber*this.interval,
           y: Math.round(this.byteToGigaByte(this.getMemoryValueByIndex(memory, index))*100)/100,
           marker: {enabled: false}
         });
       });
 
-    });
+    }));
   }
 
   byteToGigaByte(bytes: number): number {
@@ -106,5 +108,10 @@ export class MemoryUsageComponent implements OnInit {
         return -1;
     }
   }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
 
 }
