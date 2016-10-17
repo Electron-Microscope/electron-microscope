@@ -1,0 +1,4 @@
+.info > p > strong {
+    display:inline-block;
+    min-width: 120px;
+}

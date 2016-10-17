@@ -1,12 +1,17 @@
 <em-dashboard-card title="System information">
   <em-dashboard-card-content>
-    <!--<div class="current">
-      <div class="current-title">Current</div>
-      <span class="current-element"><span class="current-label-big">Free</span><span class="current-value">{{current.free.toFixed(2)}} GB</span></span>
-      <span class="current-element"><span class="current-label-big">Used</span><span class="current-value">{{current.used.toFixed(2)}} GB</span></span>
-      <span class="current-element"><span class="current-label-big">Total</span><span class="current-value">{{current.total.toFixed(2)}} GB</span> </span>
-    </div>!-->
-    {{test}}
+    <div class="info">
+      <p>&nbsp;</p>
+      <p><strong>Betriebssystem: </strong>{{os}} ({{arch}})</p>
+      <p><strong>Release: </strong>{{release}}</p>
+      <p>&nbsp;</p>
+      <p><strong>Benutzer: </strong>{{user}}</p>
+      <p><strong>Home: </strong>{{home}}</p>
+      <p>&nbsp;</p>
+      <p><strong>Hostname: </strong>{{hostname}}</p>
+      <p><strong>Systemstart: </strong>{{sysup.getHours()}}:{{sysup.getMinutes()}}:{{sysup.getSeconds()}} Uhr</p>
+      <p><strong>Laufzeit: </strong>{{uptimeDate.getUTCHours()}} Stunden, {{uptimeDate.getMinutes()}} Minuten und {{uptimeDate.getSeconds()}} Sekunden</p>
+    </div>
   </em-dashboard-card-content>
   <em-dashboard-card-chart><chart [options]="options"></chart></em-dashboard-card-chart>
 </em-dashboard-card>
