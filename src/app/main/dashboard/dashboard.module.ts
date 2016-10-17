@@ -8,8 +8,8 @@ import {
   DashboardCardActionsComponent, DashboardCardChartComponent
 } from './dashboard-card/dashboard-card.component';
 import { ChartModule } from 'angular2-highcharts';
-import {MemoryUsageComponent} from "./memory-usage/memory-usage.component";
-import {SystemInfoComponent} from "./system-info/system-info.component";
+import {MemoryUsageComponent} from './memory-usage/memory-usage.component';
+import {SystemInfoComponent} from './system-info/system-info.component';
 
 @NgModule({
   imports: [

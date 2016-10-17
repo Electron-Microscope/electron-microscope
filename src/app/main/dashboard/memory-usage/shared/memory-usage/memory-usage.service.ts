@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
 import {freemem, totalmem} from 'os';
 
 @Injectable()
@@ -13,7 +13,8 @@ export class MemoryUsageService {
    * @param interval {number} Interval in seconds
    * @return {Observable<R>} Observable, which emits memory usage information as Objects.
    */
-  public getMemoryUsageInInterval(interval: number = 0): Observable<{free: number, used: number, total: number, timestamp: Date, sequenceNumber: number}> {
+  public getMemoryUsageInInterval(interval = 0): Observable<{free: number, used: number, total: number, timestamp: Date,
+    sequenceNumber: number}> {
     return Observable.interval(interval * 1000).timestamp().map(x => {
       return {
         free: freemem(),
@@ -25,7 +26,7 @@ export class MemoryUsageService {
     });
   }
 
-  public getCurrentMemoryUsage(interval: number = 0): {free: number, used: number, total: number, timestamp: Date, sequenceNumber: number} {
+  public getCurrentMemoryUsage(): {free: number, used: number, total: number, timestamp: Date, sequenceNumber: number} {
     return {
       free: freemem(),
       used: totalmem() - freemem(),

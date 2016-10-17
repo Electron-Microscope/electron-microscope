@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SystemInfoService } from "./shared/system-info/system-info.service";
+import { SystemInfoService } from './shared/system-info/system-info.service';
 
 @Component({
   selector: 'em-system-info',
@@ -28,7 +28,7 @@ export class SystemInfoComponent implements OnInit {
     // calculating system start
     this.uptimeDate.setSeconds(sysinfoService.getUptimeSeconds());
     this.sysup = new Date(new Date().valueOf() - this.uptimeDate.valueOf());
-    
+
     // refreshing uptime
     sysinfoService.getUptime().subscribe(uptime => {
       this.uptimeDate = new Date(null);
