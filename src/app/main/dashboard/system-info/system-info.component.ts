@@ -15,19 +15,23 @@ export class SystemInfoComponent implements OnInit {
   private home: String;
   private hostname: String;
   private uptimeDate = new Date(null);
-  private sysup = new Date(null);
+  private startup = new Date(null);
+  private totalMemory: number;
+  private cpus: Array<String>;
 
   constructor(private sysinfoService: SystemInfoService) {
     this.os = sysinfoService.getOS();
     this.arch = sysinfoService.getArch();
     this.release = sysinfoService.getRelease();
+    this.totalMemory = sysinfoService.getTotalMemory();
+    this.cpus = sysinfoService.getCpus();
     this.user = sysinfoService.getUser();
     this.home = sysinfoService.getHome();
     this.hostname = sysinfoService.getHostname();
 
     // calculating system start
     this.uptimeDate.setSeconds(sysinfoService.getUptimeSeconds());
-    this.sysup = new Date(new Date().valueOf() - this.uptimeDate.valueOf());
+    this.startup = new Date(new Date().valueOf() - this.uptimeDate.valueOf());
 
     // refreshing uptime
     sysinfoService.getUptime().subscribe(uptime => {

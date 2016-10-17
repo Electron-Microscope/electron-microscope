@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { arch, hostname, release, type, uptime, userInfo, homedir } from 'os';
+import { totalmem } from 'os';
+import { cpus } from 'os';
 
 @Injectable()
 export class SystemInfoService {
@@ -49,8 +51,17 @@ export class SystemInfoService {
   }
 
   public getUptime(): Observable<number> {
-    return Observable.interval(1000).timestamp().map(x => {
+    return Observable.interval(1000).map(_x => {
       return uptime();
     });
   }
+
+  public getTotalMemory(): number {
+    return totalmem();
+  }
+
+  public getCpus(): Array<String> {
+    return Array.from(new Set(cpus().map(cpu => cpu.model)));
+  }
+
 }
