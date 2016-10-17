@@ -2,8 +2,9 @@
   <em-dashboard-card-content>
     <div class="general-information">
       <div class="information-title">General</div>
-      <span class="information-element"><span class="information-label">Total load</span>
-        <span class="information-value">{{(currentTotal * 100).toFixed(1)}}%</span>
+      <span class="information-element">
+        <span class="information-label">Total load</span>
+        <span class="information-value">{{(currentTotal.load * 100).toFixed(1)}}% ({{currentTotal.speed}}MHz)</span>
       </span>
     </div>
   </em-dashboard-card-content>
@@ -14,7 +15,7 @@
       <div class="detail-information-content">
         <div *ngFor="let item of currents, let i = index" class="information-element">
           <span class="information-label">Cpu{{i}}</span>
-          <span class="information-value">{{(item * 100).toFixed(1)}}%</span>
+          <span class="information-value">{{(item.load * 100).toFixed(1)}}% ({{item.speed}}MHz)</span>
         </div>
       </div>
     </div>

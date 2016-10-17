@@ -3,6 +3,7 @@ import { CpuLoadService } from './shared/cpu-load/cpu-load.service';
 import { ChartComponent } from 'angular2-highcharts';
 import { ViewChild } from '@angular/core/src/metadata/di';
 import { Subscription } from 'rxjs';
+import { cpus } from 'os';
 
 @Component({
   selector: 'em-cpu-load',
@@ -21,8 +22,8 @@ export class CpuLoadComponent implements OnInit, AfterViewInit {
   private interval: number = 1;
   private history: number = 50;
 
-  private currentTotal = 0;
-  private currents: Array<number> = [];
+  private currentTotal = {load: 0, speed: 0};
+  private currents: Array<{load: number, speed: number}> = [];
 
   private totalColor = '#18ffff';
   private chartColors = ['#ffd740', '#69f0ae', '#7c4dff'];
@@ -64,8 +65,8 @@ export class CpuLoadComponent implements OnInit, AfterViewInit {
     this.subscriptions.push(this.cpuLoad.getCPULoadInInterval(this.interval).subscribe(load => {
       const timestamp = `${load.timestamp.getUTCHours()}:${load.timestamp.getUTCMinutes()}:${load.timestamp.getUTCSeconds()}`;
 
-      this.currentTotal = load.loads[load.loads.length - 1];
-      load.loads.slice(0, -1).forEach((val, index) => this.currents[index] = val);
+      this.currentTotal = {load: load.loads[load.loads.length - 1], speed: load.speeds[load.speeds.length - 1]};
+      load.loads.slice(0, -1).forEach((val, index) => this.currents[index] = {load: val, speed: load.speeds[index]});
 
       this.chart.chart.series.forEach((val, index) => {
         if (this.chart.chart.series[index].data.length >= this.history) {

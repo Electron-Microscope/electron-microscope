@@ -23,22 +23,29 @@ export class CpuLoadService {
    * measurement time in Unixtime milliseconds (timestamp), the number of the current measurement (sequenceNumber) and
    * the Array of cpu loads (loads) for each core, as well as the load for the whole cpu (last element of loads) as relative numbers
    */
-  public getCPULoadInInterval(interval = 0): Observable<{loads: Array<number>, timestamp: Date, sequenceNumber: number}> {
-    return Observable.interval(interval * 1000).timestamp().flatMap<{loads: Array<number>, timestamp: Date, sequenceNumber: number}>(x => {
-      return Observable.create(obs => {
-        const loadsPrms = Promise.all(
-          cpus().map((val, ind) => this.currentCPULoad(ind))
-            .concat(this.currentCPULoad(undefined))
-        ).then(loads => {
-          obs.next({
-            loads,
-            timestamp: new Date(x.timestamp),
-            sequenceNumber: x.value
+  public getCPULoadInInterval(interval = 0): Observable<{
+    loads: Array<number>,
+    speeds: Array<number>,
+    timestamp: Date,
+    sequenceNumber: number
+  }> {
+    return Observable.interval(interval * 1000).timestamp()
+      .flatMap<{loads: Array<number>, speeds: Array<number>, timestamp: Date, sequenceNumber: number}>(x => {
+        return Observable.create(obs => {
+          const loadsPrms = Promise.all(
+            cpus().map((val, ind) => this.currentCPULoad(ind))
+              .concat(this.currentCPULoad(undefined))
+          ).then(loads => {
+            obs.next({
+              loads,
+              speeds: cpus().map(cpu => cpu.speed).concat(Math.round(cpus().reduce((prev, curr) => prev + curr.speed, 0) / cpus().length)),
+              timestamp: new Date(x.timestamp),
+              sequenceNumber: x.value
+            });
+            obs.complete();
           });
-          obs.complete();
         });
       });
-    });
   }
 
   private currentCPULoad(cpu: number | undefined): Promise<number> {
