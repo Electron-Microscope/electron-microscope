@@ -30,7 +30,7 @@ export class CpuLoadComponent implements OnInit, AfterViewInit {
     chart: {
       width: 448,
       height: 250,
-      type: "area"
+      type: 'area'
     },
     credits: {
       enabled: false
@@ -71,7 +71,8 @@ export class CpuLoadComponent implements OnInit, AfterViewInit {
         if (this.chart.chart.series[index].data.length >= this.history) {
           this.chart.chart.series[index].removePoint(0);
         }
-        this.chart.chart.series[index].addPoint({name: timestamp, x: load.sequenceNumber, y: load.loads[index] * 100, marker: {enabled: false}});
+        this.chart.chart.series[index]
+          .addPoint({name: timestamp, x: load.sequenceNumber, y: load.loads[index] * 100, marker: {enabled: false}});
       });
 
     }));
