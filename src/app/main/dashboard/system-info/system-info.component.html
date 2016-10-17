@@ -2,15 +2,16 @@
   <em-dashboard-card-content>
     <div class="info">
       <p>&nbsp;</p>
-      <p><strong>Betriebssystem: </strong>{{os}} ({{arch}})</p>
+      <p><strong>Operating system: </strong>{{os}} ({{arch}})</p>
       <p><strong>Release: </strong>{{release}}</p>
       <p>&nbsp;</p>
-      <p><strong>Benutzer: </strong>{{user}}</p>
+      <p><strong>User: </strong>{{user}}</p>
       <p><strong>Home: </strong>{{home}}</p>
       <p>&nbsp;</p>
       <p><strong>Hostname: </strong>{{hostname}}</p>
-      <p><strong>Systemstart: </strong>{{sysup.getHours()}}:{{sysup.getMinutes()}}:{{sysup.getSeconds()}} Uhr</p>
-      <p><strong>Laufzeit: </strong>{{uptimeDate.getUTCHours()}} Stunden, {{uptimeDate.getMinutes()}} Minuten und {{uptimeDate.getSeconds()}} Sekunden</p>
+      <p><strong>System startup: </strong>{{sysup.getHours()}}:{{sysup.getMinutes()}}:{{sysup.getSeconds()}}</p>
+      <p><strong>Running time: </strong>{{uptimeDate.getUTCHours()}} hours, {{uptimeDate.getMinutes()}} minutes und
+        {{uptimeDate.getSeconds()}} seconds</p>
     </div>
   </em-dashboard-card-content>
   <em-dashboard-card-chart><chart [options]="options"></chart></em-dashboard-card-chart>
