@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-disk-explorer',
+  selector: 'em-disk-explorer',
   templateUrl: './disk-explorer.component.html',
   styleUrls: ['./disk-explorer.component.css']
 })
