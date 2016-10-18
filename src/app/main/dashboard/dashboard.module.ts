@@ -5,9 +5,11 @@ import { MaterialModule } from '@angular/material';
 import { LoadAverageComponent } from './load-average/load-average.component';
 import {
   DashboardCardComponent, DashboardCardContentComponent,
-  DashboardCardActionsComponent, DashboardCardChartComponent, DashboardCardDetailContentComponent
+  DashboardCardActionsComponent, DashboardCardDetailContentComponent, DashboardCardChartComponent
 } from './dashboard-card/dashboard-card.component';
 import { ChartModule } from 'angular2-highcharts';
+import {MemoryUsageComponent} from './memory-usage/memory-usage.component';
+import {SystemInfoComponent} from './system-info/system-info.component';
 import {MemoryUsageComponent} from "./memory-usage/memory-usage.component";
 import { CpuLoadComponent } from './cpu-load/cpu-load.component';
 
@@ -27,6 +29,7 @@ import { CpuLoadComponent } from './cpu-load/cpu-load.component';
     DashboardCardActionsComponent,
     MemoryUsageComponent,
     CpuLoadComponent,
+    SystemInfoComponent
   ],
   exports: [
     DashboardComponent
