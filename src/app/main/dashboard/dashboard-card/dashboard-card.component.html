@@ -6,7 +6,11 @@
     <ng-content select="em-dashboard-card-content"></ng-content>
   </md-card-content>
 
+  <md-card-content>
+    <ng-content select="em-dashboard-card-detail-content"></ng-content>
+  </md-card-content>
+
   <div md-card-image><ng-content select="em-dashboard-card-chart"></ng-content></div>
 
-  <md-card-actions><ng-content select="em-dashboard-card-actions"></ng-content></md-card-actions>
+  <md-card-actions align="right"><ng-content select="em-dashboard-card-actions"></ng-content></md-card-actions>
 </md-card>

@@ -14,7 +14,7 @@ export class LoadAverageService {
    * measurement time in Unixtime milliseconds (timestamp), the number of the current measurement (sequenceNumber) and
    * the Array of load averages (1 min, 5 min, 15 min) (load)
    */
-  public getLoadAverageInInterval(interval: number = 0): Observable<{load: Array<number>, timestamp: Date, sequenceNumber: number}> {
+  public getLoadAverageInInterval(interval = 0): Observable<{load: Array<number>, timestamp: Date, sequenceNumber: number}> {
     return Observable.interval(interval * 1000).timestamp().map(x => {
       return {
         load: loadavg(),

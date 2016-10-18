@@ -41,6 +41,15 @@ export class DashboardCardContentComponent implements OnInit {
 }
 
 @Component({
+  selector: 'em-dashboard-card-detail-content',
+  template: '<ng-content></ng-content>'
+})
+export class DashboardCardDetailContentComponent implements OnInit {
+  constructor() { }
+  ngOnInit() { }
+}
+
+@Component({
   selector: 'em-dashboard-card-actions',
   template: '<ng-content></ng-content>'
 })

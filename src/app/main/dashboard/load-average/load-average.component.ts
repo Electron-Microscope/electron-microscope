@@ -32,7 +32,7 @@ export class LoadAverageComponent implements OnInit, AfterViewInit, OnDestroy {
     chart: {
       width: 448,
       height: 300,
-      type: "area"
+      type: 'area'
     },
     credits: {
       enabled: false
@@ -42,17 +42,17 @@ export class LoadAverageComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     series: [
       {
-        name: "1min",
+        name: '1min',
         data: [],
         color: this.chartColors[0]
       },
       {
-        name: "5min",
+        name: '5min',
         data: [],
         color: this.chartColors[1]
       },
       {
-        name: "15min",
+        name: '15min',
         data: [],
         color: this.chartColors[2]
       }

@@ -12,7 +12,8 @@
 .current-label {
   margin-right: 4px;
 
-  color: map-deep-get($theme, foreground, hint-text)
+  color: map-deep-get($theme, foreground, hint-text);
+  font-weight: bold;
 }
 
 .current-value {
