@@ -1,0 +1,21 @@
+@import '../../../../theme';
+
+.current-element {
+  margin: 7px;
+}
+
+.current-title {
+  font-size: 16px;
+  margin: 5px;
+}
+
+.current-label-big {
+  margin-right: 4px;
+  font-weight:bold;
+  color: map-deep-get($theme, foreground, hint-text)
+}
+
+.current-value {
+  color: map-deep-get($theme, foreground, secondary-text)
+}
+
