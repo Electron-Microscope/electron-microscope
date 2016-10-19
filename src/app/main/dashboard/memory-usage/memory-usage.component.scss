@@ -9,11 +9,10 @@
   margin: 5px;
 }
 
-.current-label {
+.current-label-big {
   margin-right: 4px;
-
-  color: map-deep-get($theme, foreground, hint-text);
-  font-weight: bold;
+  font-weight:bold;
+  color: map-deep-get($theme, foreground, hint-text)
 }
 
 .current-value {

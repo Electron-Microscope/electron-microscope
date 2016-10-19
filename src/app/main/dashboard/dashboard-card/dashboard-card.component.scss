@@ -1,10 +1,10 @@
 :host {
-  width: 400px;
-  height: 400px;
-  display: block;
+   width: 455px;
+   height: 448px;
+   display: block;
 }
 
-.card {
-  height: 100%;
-  width: 100%;
+md-card {
+  width: calc(100% - 44px);
+  height: calc(100% - 44px);
 }

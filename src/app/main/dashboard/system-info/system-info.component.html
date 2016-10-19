@@ -1,0 +1,22 @@
+<em-dashboard-card title="System information">
+  <em-dashboard-card-content>
+    <div class="info">
+      <div class="description"><strong>Operating system: </strong></div><div class="text">{{os}} ({{arch}})</div>
+      <div class="description"><strong>Release: </strong></div><div class="text">{{release}}</div>
+      <br /><br />
+      <div class="description" *ngFor="let cpu of cpus, let i=index"><strong>CPU{{(i > 0) ? i : ''}}: </strong></div><div
+      *ngFor="let cpu of cpus, let i=index" class="text">{{cpu}}</div>
+      <div class="description"><strong>Memory: </strong></div><div class="text">{{totalMemory}}</div>
+      <br /><br />
+      <div class="description"><strong>User: </strong></div><div class="text">{{user}}</div>
+      <div class="description"><strong>Home: </strong></div><div class="text">{{home}}</div>
+      <br /><br />
+      <div class="description"><strong>Hostname: </strong></div><div class="text">{{hostname}}</div>
+      <div class="description"><strong>System startup: </strong></div><div
+      class="text">{{startup.getHours()}}:{{startup.getMinutes()}}:{{startup.getSeconds()}}</div>
+      <div class="description"><strong>Running time: </strong></div><div class="text">{{uptimeDate.getUTCHours()}} hours,
+      {{uptimeDate.getMinutes()}} minutes and {{uptimeDate.getSeconds()}} seconds</div>
+    </div>
+  </em-dashboard-card-content>
+  <em-dashboard-card-chart><chart [options]="options"></chart></em-dashboard-card-chart>
+</em-dashboard-card>
