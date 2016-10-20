@@ -5,7 +5,9 @@
     <datatable
       class='material'
       [rows]='rows'
-      [options]='options'>
+      [options]='options'
+      (onRowClick)="killProcess($event.row.pid)"
+    >
     </datatable>
   </md-card-content>
 </md-card>

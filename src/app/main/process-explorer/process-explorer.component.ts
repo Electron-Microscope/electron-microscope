@@ -24,14 +24,16 @@ export class ProcessExplorerComponent implements OnInit, OnDestroy {
     footerHeight: 50,
     rowHeight: 'auto',
     columns: [
-      new TableColumn({ name: 'Pid' }),
-      new TableColumn({ name: 'Name' }),
+      new TableColumn({ name: 'Pid', comparator: this.sorter.bind(this) }),
+      new TableColumn({ name: 'Name', sortable: true, comparator: this.sorter.bind(this) }),
       new TableColumn({ name: 'Cpu', comparator: this.sorter.bind(this) }),
       new TableColumn({ name: 'Memory', comparator: this.sorter.bind(this) }),
     ]
   });
 
-  constructor(private processes: ProcessesService) { }
+  constructor(private processes: ProcessesService) {
+    this.processes.getProcesses().then(data => this.rows = data);
+  }
 
   ngOnInit() {
     this.subscriptions.push(this.processes.getProcessesInInterval(this.interval).subscribe(data => {
@@ -39,7 +41,15 @@ export class ProcessExplorerComponent implements OnInit, OnDestroy {
     }));
   }
 
-  sorter() {}
+  sorter(rows, dirs) {
+    this.processes.sortingProperty = dirs[0].prop;
+    this.processes.sortingOrder = dirs[0].dir == 'desc' ? -1 : +1;
+    this.processes.getProcesses().then(data => this.rows = data);
+  }
+
+  killProcess(pid: number) {
+    console.log(pid);
+  }
 
   ngOnDestroy() {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
