@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 const lookup: Function = require('current-processes').get;
+const kill: Function = require('ps-node').kill;
 import { Observable } from 'rxjs';
+import { ProcessExplorerComponent } from '../../process-explorer.component';
 
 export class ProcessInformation {
   pid: string;
@@ -57,6 +59,16 @@ export class ProcessesService {
             return this._sortingOrder * (left[this._sortingProperty] < right[this._sortingProperty] ? -1 : +1);
           })
         );
+      });
+    });
+  }
+
+  killProcess(pid: number): Promise<number> {
+    return new Promise((resolve, reject) => {
+      kill(pid, (err) => {
+        if (err) { reject(err); return; }
+
+        resolve(pid);
       });
     });
   }

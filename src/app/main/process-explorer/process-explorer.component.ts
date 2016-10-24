@@ -22,6 +22,7 @@ export class ProcessExplorerComponent implements OnInit, OnDestroy {
     columnMode: ColumnMode.force,
     headerHeight: 50,
     footerHeight: 50,
+    detailRowHeight: 56,
     rowHeight: 'auto',
     columns: [
       new TableColumn({ name: 'Pid', comparator: this.sorter.bind(this) }),
@@ -47,8 +48,8 @@ export class ProcessExplorerComponent implements OnInit, OnDestroy {
     this.processes.getProcesses().then(data => this.rows = data);
   }
 
-  killProcess(pid: number) {
-    console.log(pid);
+  killProcess(pid) {
+    this.processes.killProcess(pid);
   }
 
   ngOnDestroy() {
