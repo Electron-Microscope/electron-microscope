@@ -16,7 +16,7 @@ export class ProcessExplorerComponent implements OnInit, OnDestroy {
 
   private interval = 5;
 
-  private rows: Array<ProcessInformation> = [];
+  private rows: Array<{pid: string, name: string, cpu: string, memory: string}> = [];
 
   private options = new TableOptions({
     columnMode: ColumnMode.force,
@@ -33,19 +33,28 @@ export class ProcessExplorerComponent implements OnInit, OnDestroy {
   });
 
   constructor(private processes: ProcessesService) {
-    this.processes.getProcesses().then(data => this.rows = data);
+    this.processes.getProcesses().then(data => this.rows = data.map(row => this.convertProcessInformation(row)));
   }
 
   ngOnInit() {
     this.subscriptions.push(this.processes.getProcessesInInterval(this.interval).subscribe(data => {
-      this.rows = data;
+      this.rows = data.map(row => this.convertProcessInformation(row));
     }));
+  }
+
+  convertProcessInformation(inf: ProcessInformation): {pid: string, name: string, cpu: string, memory: string} {
+    return {
+      pid: inf.pid,
+      name: inf.name,
+      cpu: `${inf.cpu}%`,
+      memory: `${inf.memory.toFixed(2)}GB`
+    };
   }
 
   sorter(rows, dirs) {
     this.processes.sortingProperty = dirs[0].prop;
     this.processes.sortingOrder = dirs[0].dir == 'desc' ? 1 : -1;
-    this.processes.getProcesses().then(data => this.rows = data);
+    this.processes.getProcesses().then(data =>  this.rows = data.map(row => this.convertProcessInformation(row)));
   }
 
   killProcess(pid) {
