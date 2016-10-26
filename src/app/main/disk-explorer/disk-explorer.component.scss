@@ -1,0 +1,28 @@
+:host {
+  width: 455px;
+  height: 448px;
+  display: block;
+}
+
+md-card {
+  width: calc(100% - 44px);
+  height: calc(100% - 44px);
+}
+
+
+.entryList {
+  float: left;
+}
+
+.entryList >  md-list-item {
+  list-style-type: none;
+}
+
+.entryList .colorbox {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 1px #000000 solid;
+  margin: 2px;
+}
+

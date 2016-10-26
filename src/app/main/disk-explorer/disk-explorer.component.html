@@ -1,3 +1,14 @@
-<p>
-  disk-explorer works!
-</p>
+<md-card class="card">
+  <md-card-title>Disk usage</md-card-title>
+
+  <md-card-content>
+    <chart [options]="options" style="float:left;"></chart>
+      <md-list class="entryList">
+        <md-list-item *ngFor="let e of allFiles">
+          <span class="colorbox" [style.background]="e.color">&nbsp;</span>
+          <a *ngIf="e.directory" (click)="changeDir(e.name)">{{e.name}}</a>
+          <span *ngIf="!e.directory">{{e.name}}</span>
+        </md-list-item>
+      </md-list>
+  </md-card-content>
+</md-card>
