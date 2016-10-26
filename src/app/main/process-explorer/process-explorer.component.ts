@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ColumnMode, TableColumn, TableOptions } from 'angular2-data-table';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { ColumnMode, TableColumn, TableOptions, DataTable } from 'angular2-data-table';
 import { ProcessInformation, ProcessesService } from './shared/processes/processes.service';
 import { Subscription } from 'rxjs';
 
@@ -12,7 +12,10 @@ import { Subscription } from 'rxjs';
   ]
 })
 export class ProcessExplorerComponent implements OnInit, OnDestroy {
-  private subscriptions: Array<Subscription> = [];
+  @ViewChild(DataTable)
+  private table: DataTable;
+
+  private dataSubscription: Subscription = null;
 
   private interval = 5;
 
@@ -37,9 +40,7 @@ export class ProcessExplorerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscriptions.push(this.processes.getProcessesInInterval(this.interval).subscribe(data => {
-      this.rows = data.map(row => this.convertProcessInformation(row));
-    }));
+    this.setupSubscription();
   }
 
   convertProcessInformation(inf: ProcessInformation): {pid: string, name: string, cpu: string, memory: string} {
@@ -61,7 +62,31 @@ export class ProcessExplorerComponent implements OnInit, OnDestroy {
     this.processes.killProcess(pid);
   }
 
+  toggleExpandRow(row) {
+    this.toggleSubscription();
+    this.table.toggleExpandRow(row);
+  }
+
+  toggleSubscription() {
+    if (this.dataSubscription) {
+      this.removeSubscription();
+    } else {
+      this.setupSubscription();
+    }
+  }
+
+  setupSubscription() {
+    this.dataSubscription = this.processes.getProcessesInInterval(this.interval).subscribe(data => {
+      this.rows = data.map(row => this.convertProcessInformation(row));
+    });
+  }
+
+  removeSubscription() {
+    this.dataSubscription.unsubscribe();
+    this.dataSubscription = null;
+  }
+
   ngOnDestroy() {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    this.removeSubscription();
   }
 }

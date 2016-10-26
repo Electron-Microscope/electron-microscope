@@ -7,13 +7,13 @@
       class='material'
       [rows]='rows'
       [options]='options'
-      (onRowClick)="table.toggleExpandRow($event.row)"
+      (onRowClick)="toggleExpandRow($event.row)"
     >
       <datatable-row-detail-template>
         <template let-row="row">
           <div>
-            <button md-raised-button color="warn" (click)="killProcess(row.pid)" class="row-action-button">Kill</button>
-            <button md-raised-button color="primary" (click)="table.toggleExpandRow(row)" class="row-action-button">Done</button>
+            <button md-raised-button color="warn" (click)="killProcess(row.pid); toggleExpandRow(row)" class="row-action-button">Kill</button>
+            <button md-raised-button color="primary" (click)="toggleExpandRow(row)" class="row-action-button">Done</button>
           </div>
         </template>
       </datatable-row-detail-template>
