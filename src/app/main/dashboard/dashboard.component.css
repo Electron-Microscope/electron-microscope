@@ -6,3 +6,9 @@
 
   padding: 16px;
 }
+
+section > * {
+  margin: 5px;
+  height:448px;
+  width:455px;
+}
