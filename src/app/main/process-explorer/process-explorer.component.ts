@@ -44,7 +44,7 @@ export class ProcessExplorerComponent implements OnInit, OnDestroy {
 
   sorter(rows, dirs) {
     this.processes.sortingProperty = dirs[0].prop;
-    this.processes.sortingOrder = dirs[0].dir == 'desc' ? -1 : +1;
+    this.processes.sortingOrder = dirs[0].dir == 'desc' ? 1 : -1;
     this.processes.getProcesses().then(data => this.rows = data);
   }
 
