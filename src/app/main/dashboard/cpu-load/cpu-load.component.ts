@@ -3,7 +3,8 @@ import { CpuLoadService } from './shared/cpu-load/cpu-load.service';
 import { ChartComponent } from 'angular2-highcharts';
 import { ViewChild } from '@angular/core/src/metadata/di';
 import { Subscription } from 'rxjs';
-import { cpus } from 'os';
+import { colors } from '../../../../colors';
+const generateSteps = require('color-stepper').generateSteps;
 
 @Component({
   selector: 'em-cpu-load',
@@ -25,8 +26,7 @@ export class CpuLoadComponent implements OnInit, AfterViewInit {
   private currentTotal = {load: 0, speed: 0};
   private currents: Array<{load: number, speed: number}> = [];
 
-  private totalColor = '#18ffff';
-  private chartColors = ['#ffd740', '#69f0ae', '#7c4dff'];
+  private chartColors = generateSteps(colors, this.cpuLoad.getNumberOfCPUs() + 1);
   private options: HighchartsOptions = {
     chart: {
       width: 448,
@@ -43,13 +43,13 @@ export class CpuLoadComponent implements OnInit, AfterViewInit {
       return {
         name: `Cpu${index}`,
         data: [],
-        color: this.chartColors[index % this.chartColors.length]
+        color: this.chartColors[index]
       };
     }).concat([
       {
         name: 'Total',
         data: [],
-        color: this.totalColor
+        color: this.chartColors.slice(-1)[0]
       }
     ])
   };
