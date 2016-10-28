@@ -5,6 +5,7 @@ import {
 import { LoadAverageService } from './shared/load-average/load-average.service';
 import { Subscription } from 'rxjs';
 import { ChartComponent } from 'angular2-highcharts';
+import { colors } from '../../../../colors';
 
 @Component({
   selector: 'em-load-average',
@@ -27,7 +28,7 @@ export class LoadAverageComponent implements OnInit, AfterViewInit, OnDestroy {
   private curr5 = 0;
   private curr15= 0;
 
-  private chartColors = ['#ffd740', '#69f0ae', '#7c4dff'];
+  private chartColors = colors;
   private options: HighchartsOptions = {
     chart: {
       width: 448,
