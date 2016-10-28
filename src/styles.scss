@@ -1,12 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 @import './fonts/material-icons.css';
+@import './fonts/titilium.css';
 @import 'theme.scss';
 
 @import '~angular2-data-table/release/datatable.css';
 @import '~angular2-data-table/release/material.css';
 @import '~angular2-data-table/assets/icons.css';
 
+$md-font-family: Titillium;
+
 html {
+  font-family: $md-font-family !important;
   margin: 0;
   height: 100%;
 }
@@ -20,3 +24,11 @@ app-root {
   height: 100%;
 }
 
+* {
+  font-family: $md-font-family;
+}
+
+md-card-title, md-toolbar .title {
+  text-transform: uppercase;
+  font-weight: bold !important;
+}

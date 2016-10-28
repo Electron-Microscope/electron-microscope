@@ -31,6 +31,7 @@
     "@angular/router": "3.0.0",
     "angular2-data-table": "0.10.1",
     "angular2-highcharts": "0.3.4",
+    "color-stepper": "1.0.0-beta",
     "core-js": "2.4.1",
     "current-processes": "^0.2.1",
     "electron": "1.4.1",

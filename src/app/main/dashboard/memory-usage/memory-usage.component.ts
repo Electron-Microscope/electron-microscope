@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular
 import { MemoryUsageService } from './shared/memory-usage/memory-usage.service';
 import { ChartComponent } from 'angular2-highcharts';
 import { Subscription } from 'rxjs';
+import { colors } from '../../../../colors';
 
 @Component({
   selector: 'em-memory-usage',
@@ -25,7 +26,7 @@ export class MemoryUsageComponent implements OnInit, AfterViewInit, OnDestroy  {
     total: 0
   };
 
-  private chartColors = ['#ffd740', '#69f0ae', '#7c4dff'];
+  private chartColors = colors;
   private options: HighchartsOptions = {
     chart: {
       width: 448,
