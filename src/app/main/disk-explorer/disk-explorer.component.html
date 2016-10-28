@@ -4,12 +4,17 @@
     <chart [options]="options" style="float:left;"></chart>
 
       <md-list class="entryList">
-        <md-list-item><md-icon (click)="changeDir('..')">keyboard_arrow_left</md-icon></md-list-item>
+        <md-list-item><md-icon class="clickable" (click)="changeDir('..')">keyboard_arrow_left</md-icon></md-list-item>
         <md-list-item *ngFor="let e of allFiles">
-          <span class="colorbox" [style.background]="e.color">&nbsp;</span>
-          <span (class)="e.directory ? 'clickable' : ''" (click)="e.directory ? changeDir(e.name) : ''">{{e.name}} {{e.size}}</span>
+          <span md-list-avatar class="colorbox" [style.background]="e.color">&nbsp;</span>
+          <h3 md-line> <span [class.clickable]="e.directory" (click)="e.directory ? changeDir(e.name) : ''">{{e.name}} </span>
+          </h3>
+          <p md-line>
+            <span>Size: </span>
+            <span class="demo-2"> {{e.size}} </span>
+          </p>
         </md-list-item>
       </md-list>
-    <p style="clear: both;"></p>
+    <p style="clear: both;">&nbsp;</p>
   </md-card-content>
 </md-card>
