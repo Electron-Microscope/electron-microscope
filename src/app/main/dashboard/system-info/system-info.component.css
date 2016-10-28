@@ -9,6 +9,10 @@
   min-width: 150px;
 }
 
+.info > .description strong {
+  font-weight: 600;
+}
+
 .info > .text {
   min-width: 250px;
   max-width: 250px;
