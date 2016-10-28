@@ -1,17 +1,21 @@
-:host {
-  width: 455px;
-  height: 448px;
+md-card {
+  margin: 20px;
   display: block;
 }
 
-md-card {
-  width: calc(100% - 44px);
-  height: calc(100% - 44px);
+chart {
+  width:60%;
 }
 
-
-.entryList {
+md-list {
+  width:40%;
+  overflow-y: scroll;
+  height:200%;
   float: left;
+}
+
+md-card, md-card-content {
+  height:40%;
 }
 
 .entryList >  md-list-item {
@@ -20,9 +24,9 @@ md-card {
 
 .entryList .colorbox {
   display: inline-block;
-  width: 16px;
-  height: 16px;
-  border: 1px #000000 solid;
+  width: 30px;
+  height: 30px;
+  border: 5px #FFFFFF solid;
+  border-radius: 25px;
   margin: 2px;
 }
-
