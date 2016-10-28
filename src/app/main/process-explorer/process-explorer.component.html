@@ -1,3 +1,23 @@
-<p>
-  process-explorer works!
-</p>
+<md-card class="card">
+  <md-card-title>Running Processes</md-card-title>
+
+  <md-card-content>
+    <datatable
+      #table
+      class='material'
+      [rows]='rows'
+      [options]='options'
+      (onRowClick)="toggleExpandRow($event.row)"
+    >
+      <datatable-row-detail-template>
+        <template let-row="row">
+          <div>
+            <button md-raised-button color="warn" (click)="killProcess(row.pid); toggleExpandRow(row)" class="row-action-button">Kill</button>
+            <button md-raised-button color="primary" (click)="toggleExpandRow(row)" class="row-action-button">Done</button>
+          </div>
+        </template>
+      </datatable-row-detail-template>
+    </datatable>
+  </md-card-content>
+</md-card>
+

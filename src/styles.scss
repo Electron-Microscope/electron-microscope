@@ -2,6 +2,10 @@
 @import './fonts/material-icons.css';
 @import 'theme.scss';
 
+@import '~angular2-data-table/release/datatable.css';
+@import '~angular2-data-table/release/material.css';
+@import '~angular2-data-table/assets/icons.css';
+
 html {
   margin: 0;
   height: 100%;
