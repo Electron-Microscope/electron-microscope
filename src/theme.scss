@@ -1,6 +1,45 @@
-@import '~@angular/material/core/theming/prebuilt/indigo-pink.scss';
-$theme: $theme;
+@import '~@angular/material/core/theming/_all-theme.scss';
+@import '~@angular/material/core/theming/_palette.scss';
+@import '~@angular/material/core/theming/_theming.scss';
+
+// Include non-theme styles for core.
+@include md-core();
+
 $md-ripple-background-color: rgba(0, 0, 0, 0.0588);
+$black-87-opacity: rgba(black, 0.87);
+$white-87-opacity: rgba(white, 0.87);
+
+$colors-primary: (
+  100: #F59C00,
+  500: #ED730C,
+  600: #EA5B0C,
+  700: #EA5B0C,
+  contrast: (
+    100: $black-87-opacity,
+    500: white,
+    600: $white-87-opacity,
+    700: $white-87-opacity
+  )
+);
+
+$colors-accent: (
+  100: #83D0F5,
+  500: #0CA8DA,
+  600: #0091D3,
+  700: #0091D3,
+  contrast: (
+    100: $black-87-opacity,
+    500: white,
+    600: $white-87-opacity,
+    700: $white-87-opacity
+  )
+);
+
+$palette-primary: md-palette($colors-primary);
+$palette-accent: md-palette($colors-accent);
+$theme: md-light-theme($palette-primary, $palette-accent);
+
+@include angular-material-theme($theme);
 
 /// Map deep get - to access elements in $theme map
 /// @author Hugo Giraudel
