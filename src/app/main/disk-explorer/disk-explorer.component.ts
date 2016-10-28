@@ -46,6 +46,7 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
     plotOptions: {
       pie: {
         allowPointSelect: true,
+        borderWidth: 0,
         cursor: 'pointer',
         innerSize: 120,
         dataLabels: {
