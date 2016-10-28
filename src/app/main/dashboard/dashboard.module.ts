@@ -5,11 +5,12 @@ import { MaterialModule } from '@angular/material';
 import { LoadAverageComponent } from './load-average/load-average.component';
 import {
   DashboardCardComponent, DashboardCardContentComponent,
-  DashboardCardActionsComponent, DashboardCardChartComponent
+  DashboardCardActionsComponent, DashboardCardDetailContentComponent, DashboardCardChartComponent
 } from './dashboard-card/dashboard-card.component';
 import { ChartModule } from 'angular2-highcharts';
-import {MemoryUsageComponent} from './memory-usage/memory-usage.component';
 import {SystemInfoComponent} from './system-info/system-info.component';
+import {MemoryUsageComponent} from './memory-usage/memory-usage.component';
+import { CpuLoadComponent } from './cpu-load/cpu-load.component';
 
 @NgModule({
   imports: [
@@ -22,9 +23,11 @@ import {SystemInfoComponent} from './system-info/system-info.component';
     LoadAverageComponent,
     DashboardCardComponent,
     DashboardCardContentComponent,
+    DashboardCardDetailContentComponent,
     DashboardCardChartComponent,
     DashboardCardActionsComponent,
     MemoryUsageComponent,
+    CpuLoadComponent,
     SystemInfoComponent
   ],
   exports: [

@@ -1,0 +1,38 @@
+<em-dashboard-card title="CPU Load">
+  <em-dashboard-card-content>
+    <div class="general-information">
+      <div class="information-title">General</div>
+      <span class="information-element">
+        <span class="information-label">Total load</span>
+        <span class="information-value">{{(currentTotal.load * 100).toFixed(1)}}% ({{currentTotal.speed}}MHz)</span>
+      </span>
+    </div>
+  </em-dashboard-card-content>
+
+  <em-dashboard-card-detail-content [style.display]="detailsView == 'text' ? 'block' : 'none'">
+    <div class="detail-information">
+      <div class="information-title">Details</div>
+      <div class="detail-information-content">
+        <div *ngFor="let item of currents, let i = index" class="information-element">
+          <span class="information-label">Cpu{{i}}</span>
+          <span class="information-value">{{(item.load * 100).toFixed(1)}}% ({{item.speed}}MHz)</span>
+        </div>
+      </div>
+    </div>
+  </em-dashboard-card-detail-content>
+
+  <em-dashboard-card-chart [style.display]="detailsView == 'chart' ? 'block' : 'none'">
+    <chart [options]="options"></chart>
+  </em-dashboard-card-chart>
+
+  <em-dashboard-card-actions>
+    <md-button-toggle-group [value]="detailsView" (change)="detailsView = $event.value">
+      <md-button-toggle value="text">
+        <md-icon>list</md-icon>
+      </md-button-toggle>
+      <md-button-toggle value="chart">
+        <md-icon>show_chart</md-icon>
+      </md-button-toggle>
+    </md-button-toggle-group>
+  </em-dashboard-card-actions>
+</em-dashboard-card>
