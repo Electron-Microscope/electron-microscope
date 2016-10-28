@@ -3,6 +3,10 @@
 @import './fonts/titilium.css';
 @import 'theme.scss';
 
+@import '~angular2-data-table/release/datatable.css';
+@import '~angular2-data-table/release/material.css';
+@import '~angular2-data-table/assets/icons.css';
+
 $md-font-family: Titillium;
 
 html {
