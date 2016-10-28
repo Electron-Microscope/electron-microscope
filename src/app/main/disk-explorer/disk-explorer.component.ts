@@ -3,7 +3,8 @@ import { ChartComponent } from 'angular2-highcharts';
 import { ViewChild } from '@angular/core/src/metadata/di';
 import { DiskExplorerService } from './shared/disk-explorer.service';
 import { resolve } from 'path';
-import { map } from 'rxjs/operator/map';
+import { colors } from '../../../colors';
+const generateSteps = require('color-stepper').generateSteps;
 
 @Component({
   selector: 'app-disk-explorer',
@@ -15,9 +16,13 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
   @ViewChild(ChartComponent)
   private chart: ChartComponent;
 
-  private colorPalette = ['#FF0000', '#0000FF', '#E040FB', '#7C4DFF', '#536DFE', '#448AFF', '#40C4FF', '#18FFFF', '#64FFDA',
-   '#69F0AE'];
-  private defaultColor = '#006600';
+  private detailedEntries = 10;
+
+  // colors for the entries and one default color (last element is default), which are
+  // shuffled to avoid similar colors next to each other
+  private colorPalette = generateSteps(colors, this.detailedEntries + 1).sort(function() {
+    return .5 - Math.random();
+  });
 
   private currentPath = resolve(process.cwd(), 'src');
   private allFiles: Array<{name: string, size: number, color: string, directory:boolean}> = [];
@@ -79,14 +84,14 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
 
         return a.size < b.size ? 1 : -1;
       }).map((entry, entryIndex) => {
-        entry.color = entryIndex < this.colorPalette.length ? this.colorPalette[entryIndex] : this.defaultColor;
+        entry.color = entryIndex < this.detailedEntries ? this.colorPalette[entryIndex] : this.colorPalette.slice(-1)[0];
         return entry;
       });
 
       this.allFiles = sorted;
 
-      const first = sorted.slice(0,9);
-      const other = sorted.slice(10).reduce((acc, curr) => {acc.size += curr.size; return acc}, {name: 'Other', size: 0, directory: true, color: this.defaultColor});
+      const first = sorted.slice(0,this.detailedEntries - 1);
+      const other = sorted.slice(this.detailedEntries).reduce((acc, curr) => {acc.size += curr.size; return acc}, {name: 'Other', size: 0, directory: true, color: this.colorPalette.slice(-1)[0]});
 
       const chartEntries = first.concat(other);
 
