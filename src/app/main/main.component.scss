@@ -19,6 +19,13 @@ $std-increment: 64px;
   vertical-align: middle;
 }
 
+.toolbar-content > img {
+  max-width: 145px;
+  position: absolute;
+  top:13px;
+  right: 20px;
+}
+
 .menu-icon {
   line-height: 1;
   vertical-align: middle;
