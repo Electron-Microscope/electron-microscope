@@ -1,6 +1,7 @@
 md-card {
   margin: 20px;
   display: block;
+  height:55%;
 }
 
 chart {
@@ -10,19 +11,19 @@ chart {
 md-list {
   width:40%;
   overflow-y: scroll;
-  height:200%;
+  height:490%;
   float: left;
 }
 
-md-card, md-card-content {
+md-card-content {
   height:40%;
 }
 
-.entryList >  md-list-item {
+md-list >  md-list-item {
   list-style-type: none;
 }
 
-.entryList .colorbox {
+md-list .colorbox {
   display: inline-block;
   width: 30px;
   height: 30px;
@@ -33,4 +34,16 @@ md-card, md-card-content {
 
 .clickable {
   cursor: pointer;
+}
+
+.backicon {
+  width:100%;
+}
+
+.usage {
+  height:40%;
+}
+
+.invisible {
+  display:none;
 }

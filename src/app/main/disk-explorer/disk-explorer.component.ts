@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ChangeDetectorRef, NgZone } from '@angular/core';
 import { ChartComponent } from 'angular2-highcharts';
 import { ViewChild } from '@angular/core/src/metadata/di';
 import { DiskExplorerService } from './shared/disk-explorer.service';
@@ -17,6 +17,7 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
   private chart: ChartComponent;
 
   private detailedEntries = 10;
+  private dataAvailable = true;
 
   // colors for the entries and one default color (last element is default), which are
   // shuffled to avoid similar colors next to each other
@@ -61,7 +62,7 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
     }]
   };
 
-  constructor(private diskExplorerService: DiskExplorerService) {
+  constructor(private diskExplorerService: DiskExplorerService, private ngZone:NgZone) {
   }
 
   ngOnInit() {
@@ -71,8 +72,14 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
     this.showDir(this.currentPath);
 
     window.onresize = () => {
-      this.chart.chart.setSize((window.innerWidth - 500)*0.6, window.innerHeight*0.6);
+      console.log(window.innerWidth);
+      this.resizeChart();
     };
+    this.resizeChart();
+  }
+
+  private resizeChart() {
+    this.chart.chart.setSize((window.innerWidth - 320)*0.55, window.innerHeight*0.50);
   }
 
   private showDir(dir:string) {
@@ -80,6 +87,8 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
 
 
     sizes.then((sizes) => {
+      this.dataAvailable = true;
+
       const sorted = sizes.sort(function(a, b) {
         if(a.size == b.size) return 0;
 
@@ -96,8 +105,8 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
 
       const chartEntries = first.concat(other);
 
-      let totalSize = Math.round(chartEntries.reduce((acc, curr) => acc + curr.size, 0)/1024/1024 * 100) / 100;
-      let totalSizeString = totalSize+" MB";
+      let totalSize = chartEntries.reduce((acc, curr) => acc + curr.size, 0);
+      let totalSizeString = this.diskExplorerService.getHumanReadableSize(totalSize);
 
       chartEntries.forEach(size => {
         this.chart.chart.series[0].addPoint({
@@ -108,6 +117,8 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
       });
 
       this.chart.chart.setTitle({text:totalSizeString});
+      //this.recData;
+
     });
 
 
@@ -117,6 +128,7 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
     this.currentPath = resolve(this.currentPath, newDir);
 
     // clear
+    this.dataAvailable = false;
     this.chart.chart.series[0].setData([], true,true,true);
     this.allFiles = [];
 
