@@ -16,6 +16,9 @@ function createWindow () {
   if (process.env.NODE_ENV == 'development')
     win.webContents.openDevTools()
 
+  // remove the default menu bar
+  win.setMenu(null);
+
   // Emitted when the window is closed.
   win.on('closed', () => {
     // Dereference the window object, usually you would store windows
