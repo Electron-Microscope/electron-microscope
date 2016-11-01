@@ -17,7 +17,7 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
   private chart: ChartComponent;
 
   private detailedEntries = 10;
-  private dataAvailable = true;
+  private dataAvailable = false;
 
   // colors for the entries and one default color (last element is default), which are
   // shuffled to avoid similar colors next to each other
