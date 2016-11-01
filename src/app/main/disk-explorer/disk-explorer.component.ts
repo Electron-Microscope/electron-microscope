@@ -7,7 +7,7 @@ import { colors } from '../../../colors';
 const generateSteps = require('color-stepper').generateSteps;
 
 @Component({
-  selector: 'app-disk-explorer',
+  selector: 'em-disk-explorer',
   templateUrl: './disk-explorer.component.html',
   styleUrls: ['disk-explorer.component.scss'],
   providers: [DiskExplorerService]
@@ -26,7 +26,7 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
   });
 
   private currentPath = process.cwd();
-  private allFiles: Array<{name: string, size: number, color: string, directory:boolean}> = [];
+  private allFiles: Array<{ name: string, size: number, color: string, directory: boolean }> = [];
   private options: HighchartsOptions = {
     chart: {
       plotBackgroundColor: null,
@@ -62,7 +62,7 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
     }]
   };
 
-  constructor(private diskExplorerService: DiskExplorerService, private ngZone:NgZone) {
+  constructor(private diskExplorerService: DiskExplorerService, private ngZone: NgZone) {
   }
 
   ngOnInit() {
@@ -79,18 +79,18 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
   }
 
   private resizeChart() {
-    this.chart.chart.setSize((window.innerWidth - 320)*0.55, window.innerHeight*0.50);
+    this.chart.chart.setSize((window.innerWidth - 320) * 0.55, window.innerHeight * 0.50);
   }
 
-  private showDir(dir:string) {
-    const sizes = this.diskExplorerService.getEntries(dir);
+  private showDir(dir: string) {
+    const sizesPrms = this.diskExplorerService.getEntries(dir);
 
 
-    sizes.then((sizes) => {
+    sizesPrms.then((sizes) => {
       this.dataAvailable = true;
 
       const sorted = sizes.sort(function(a, b) {
-        if(a.size == b.size) return 0;
+        if (a.size == b.size) { return 0; }
 
         return a.size < b.size ? 1 : -1;
       }).map((entry, entryIndex) => {
@@ -100,8 +100,12 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
 
       this.allFiles = sorted;
 
-      const first = sorted.slice(0,this.detailedEntries - 1);
-      const other = sorted.slice(this.detailedEntries).reduce((acc, curr) => {acc.size += curr.size; return acc}, {name: 'Other', size: 0, directory: true, color: this.colorPalette.slice(-1)[0]});
+      const first = sorted.slice(0, this.detailedEntries - 1);
+      const other = sorted.slice(this.detailedEntries)
+        .reduce(
+          (acc, curr) => { acc.size += curr.size; return acc; },
+          {name: 'Other', size: 0, directory: true, color: this.colorPalette.slice(-1)[0]}
+        );
 
       const chartEntries = first.concat(other);
 
@@ -116,9 +120,7 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
         });
       });
 
-      this.chart.chart.setTitle({text:totalSizeString});
-      //this.recData;
-
+      this.chart.chart.setTitle({ text: totalSizeString });
     });
 
 
@@ -129,7 +131,7 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
 
     // clear
     this.dataAvailable = false;
-    this.chart.chart.series[0].setData([], true,true,true);
+    this.chart.chart.series[0].setData([], true, true, true);
     this.allFiles = [];
 
     // refresh

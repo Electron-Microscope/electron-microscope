@@ -1,41 +1,41 @@
 import { Injectable } from '@angular/core';
 import { readdir, stat } from 'fs';
-import { resolve as pathResolve } from "path";
+import { resolve as pathResolve } from 'path';
 
 @Injectable()
 export class DiskExplorerService {
 
   constructor() { }
 
-  public getHumanReadableSize(size:number):string {
+  public getHumanReadableSize(size: number): string {
     let decimalPower = 1;
 
-    while(size > 1024) {
+    while (size > 1024) {
       size /= 1024;
       decimalPower++;
     }
     size = Math.round(size * 100) / 100;
-    return size.toString()+" "+this.decimalPowerToUnit(decimalPower);
+    return size.toString() + ' ' + this.decimalPowerToUnit(decimalPower);
   }
 
-  private decimalPowerToUnit(power:number):string {
-    switch(power) {
+  private decimalPowerToUnit(power: number): string {
+    switch (power) {
       case 1:
-        return "Byte";
+        return 'Byte';
       case 2:
-        return "KB";
+        return 'KB';
       case 3:
-        return "MB";
+        return 'MB';
       case 4:
-        return "GB";
+        return 'GB';
       case 5:
-        return "TB";
+        return 'TB';
       case 6:
-        return "PB";
+        return 'PB';
     }
   }
 
-  public getEntries(path: string): Promise<{name: string, size: number, color: string, directory:boolean}[]> {
+  public getEntries(path: string): Promise<{name: string, size: number, color: string, directory: boolean}[]> {
     return new Promise((resolve, reject) => {
       readdir(path, (err, entries: string[]) => {
         if (err) {
@@ -44,7 +44,7 @@ export class DiskExplorerService {
         }
 
         resolve(entries);
-      })
+      });
     })
       .then(entries => {
         return Promise.all(entries.map((entry, entryIndex) => {
@@ -56,7 +56,7 @@ export class DiskExplorerService {
                 }
 
                 resolve(entryStat);
-              })
+              });
             })
               .then((entryStat: {isDirectory: Function, size: number}) => {
                 if (entryStat.isDirectory()) {
