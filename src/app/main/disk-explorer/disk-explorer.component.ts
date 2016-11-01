@@ -25,7 +25,7 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
     return .5 - Math.random();
   });
 
-  private currentPath = resolve(process.cwd(), 'src');
+  private currentPath = process.cwd();
   private allFiles: Array<{name: string, size: number, color: string, directory:boolean}> = [];
   private options: HighchartsOptions = {
     chart: {
