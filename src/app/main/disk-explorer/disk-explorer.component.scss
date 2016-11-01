@@ -1,0 +1,49 @@
+md-card {
+  margin: 20px;
+  display: block;
+  height:55%;
+}
+
+chart {
+  width:60%;
+}
+
+md-list {
+  width:40%;
+  overflow-y: scroll;
+  height:490%;
+  float: left;
+}
+
+md-card-content {
+  height:40%;
+}
+
+md-list >  md-list-item {
+  list-style-type: none;
+}
+
+md-list .colorbox {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 5px #FFFFFF solid;
+  border-radius: 25px;
+  margin: 2px;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.backicon {
+  width:100%;
+}
+
+.usage {
+  height:40%;
+}
+
+.invisible {
+  display:none;
+}
