@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SystemInfoService } from './shared/system-info/system-info.service';
+import { dateFormat } from 'dateFormat';
 
 @Component({
   selector: 'em-system-info',
@@ -15,7 +16,7 @@ export class SystemInfoComponent implements OnInit {
   private home: String;
   private hostname: String;
   private uptimeDate = new Date(null);
-  private startup = new Date(null);
+  private startup: String;
   private totalMemory: number;
   private cpus: Array<String>;
 
@@ -31,7 +32,9 @@ export class SystemInfoComponent implements OnInit {
 
     // calculating system start
     this.uptimeDate.setSeconds(sysinfoService.getUptimeSeconds());
-    this.startup = new Date(new Date().valueOf() - this.uptimeDate.valueOf());
+    let startupDate = new Date(new Date().valueOf() - this.uptimeDate.valueOf());
+    let dateFormat = require('dateformat');
+    this.startup = dateFormat(startupDate, "dddd, mmmm dS, yyyy, h:MM:ss TT");
 
     // refreshing uptime
     sysinfoService.getUptime().subscribe(uptime => {
