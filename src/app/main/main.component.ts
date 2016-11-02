@@ -27,7 +27,7 @@ export class MainComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   private setSidenavMode() {
     const width = window.innerWidth;
-    if (width > 800) {
+    if (width > 1100) {
       this.sidenavMode =  'side';
     } else {
       this.sidenavMode =  'over';
