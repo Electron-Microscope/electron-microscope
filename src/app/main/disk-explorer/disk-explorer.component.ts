@@ -4,6 +4,7 @@ import { ViewChild } from '@angular/core/src/metadata/di';
 import { DiskExplorerService } from './shared/disk-explorer.service';
 import { resolve } from 'path';
 import { colors } from '../../../colors';
+import { HostListener } from '@angular/core/src/metadata/directives';
 const generateSteps = require('color-stepper').generateSteps;
 
 @Component({
@@ -71,13 +72,11 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.showDir(this.currentPath);
 
-    window.onresize = () => {
-      console.log(window.innerWidth);
-      this.resizeChart();
-    };
+
     this.resizeChart();
   }
 
+  @HostListener('window:resize', ['$event'])
   private resizeChart() {
     this.chart.chart.setSize((window.innerWidth - 320) * 0.55, window.innerHeight * 0.50);
   }
