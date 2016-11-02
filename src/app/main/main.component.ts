@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, HostListener } from '@angular/core';
 
 @Component({
   selector: 'em-main',
@@ -12,12 +12,7 @@ export class MainComponent implements OnInit {
   constructor(private ngZone: NgZone) { }
 
   ngOnInit() {
-    this.sidenavMode = this.getSidenavMode(Number(window.innerWidth));
-    window.onresize = () => {
-      this.ngZone.run(() => {
-        this.sidenavMode = this.getSidenavMode(Number(window.innerWidth));
-      });
-    };
+    this.setSidenavMode();
   }
 
   get sidenavOpen(): boolean {
@@ -29,11 +24,13 @@ export class MainComponent implements OnInit {
     if (this.sidenavMode != 'side') { this._sidenavOpen = value; }
   }
 
-  private getSidenavMode(width: number) {
-    if (width > 800) {
-      return 'side';
+  @HostListener('window:resize', ['$event'])
+  private setSidenavMode() {
+    const width = window.innerWidth;
+    if (width > 1100) {
+      this.sidenavMode =  'side';
     } else {
-      return 'over';
+      this.sidenavMode =  'over';
     }
   }
 }
