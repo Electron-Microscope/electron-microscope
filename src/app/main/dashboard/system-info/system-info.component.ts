@@ -17,14 +17,14 @@ export class SystemInfoComponent implements OnInit {
   private hostname: String;
   private uptimeDate = new Date(null);
   private startup: String;
-  private totalMemory: number;
+  private totalMemory: String;
   private cpus: Array<String>;
 
   constructor(private sysinfoService: SystemInfoService) {
     this.os = sysinfoService.getOS();
     this.arch = sysinfoService.getArch();
     this.release = sysinfoService.getRelease();
-    this.totalMemory = sysinfoService.getTotalMemory();
+    this.totalMemory = sysinfoService.getHumanReadableSize(sysinfoService.getTotalMemory());
     this.cpus = sysinfoService.getCpus();
     this.user = sysinfoService.getUser();
     this.home = sysinfoService.getHome();

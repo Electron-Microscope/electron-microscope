@@ -10,6 +10,34 @@ export class SystemInfoService {
   constructor() {
   }
 
+  public getHumanReadableSize(size: number): string {
+    let decimalPower = 1;
+
+    while (size > 1024) {
+      size /= 1024;
+      decimalPower++;
+    }
+    size = Math.round(size * 100) / 100;
+    return size.toString() + ' ' + this.decimalPowerToUnit(decimalPower);
+  }
+
+  private decimalPowerToUnit(power: number): string {
+    switch (power) {
+      case 1:
+        return 'Byte';
+      case 2:
+        return 'KB';
+      case 3:
+        return 'MB';
+      case 4:
+        return 'GB';
+      case 5:
+        return 'TB';
+      case 6:
+        return 'PB';
+    }
+  }
+
   public getOS(): String {
     switch (type()) {
       case 'Windows_NT':
