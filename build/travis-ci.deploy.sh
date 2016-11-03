@@ -7,7 +7,7 @@ then
 
   ls -al packages
   
-  for package in packages; do
+  for package in ./packages/*; do
     [ -d "$package" ] || continue # if not a directory, skip
 
     dirname="$(basename "${path}")"
