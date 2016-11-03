@@ -12,7 +12,7 @@ export class MainComponent implements OnInit {
 
 
 
-  constructor(private ngZone: NgZone, private overlayService : OverlayService) { }
+  constructor(private ngZone: NgZone, private overlayService: OverlayService) { }
 
   ngOnInit() {
     this.sidenavMode = this.getSidenavMode(Number(window.innerWidth));

@@ -64,7 +64,7 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
     }]
   };
 
-  constructor(private diskExplorerService: DiskExplorerService, private overlayService : OverlayService) {
+  constructor(private diskExplorerService: DiskExplorerService, private overlayService: OverlayService) {
   }
 
   ngOnInit() {
