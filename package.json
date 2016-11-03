@@ -13,7 +13,6 @@
     "test": "ng test",
     "test:phantom": "ng test --browsers PhantomJS",
     "test:ci": "ng test --browsers PhantomJS --single-run",
-    "coveralls": "cat ./coverage/coverage.lcov | coveralls",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor",
     "pre-push": "npm run lint && npm run test:ci"
@@ -44,7 +43,6 @@
     "@types/jasmine": "2.2.30",
     "angular-cli": "1.0.0-beta.15",
     "codelyzer": "0.0.26",
-    "coveralls": "2.11.14",
     "jasmine-core": "2.4.1",
     "jasmine-spec-reporter": "2.5.0",
     "karma": "1.2.0",
