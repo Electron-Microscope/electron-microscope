@@ -1,6 +1,6 @@
 {
   "name": "electron-microscope",
-  "version": "0.0.1-beta1",
+  "version": "0.0.1-beta6",
   "license": "MIT",
   "angular-cli": {},
   "main": "dist/index.js",
