@@ -34,7 +34,7 @@ export class SystemInfoComponent implements OnInit {
     this.uptimeDate.setSeconds(sysinfoService.getUptimeSeconds());
     let startupDate = new Date(new Date().valueOf() - this.uptimeDate.valueOf());
     let dateFormat = require('dateformat');
-    this.startup = dateFormat(startupDate, "dddd, mmmm dS, yyyy, h:MM:ss TT");
+    this.startup = dateFormat(startupDate, 'dddd, mmmm dS, yyyy, h:MM:ss TT');
 
     // refreshing uptime
     sysinfoService.getUptime().subscribe(uptime => {
