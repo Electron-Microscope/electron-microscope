@@ -4,6 +4,8 @@ if [ $TRAVIS_TAG ]
 then
   echo "Deploying distribution packages to BinTray"
   TAG=$(echo $TRAVIS_TAG | sed 's/v//g')
+
+  ls -al packages
   
   for package in packages; do
     [ -d "$package" ] || continue # if not a directory, skip
