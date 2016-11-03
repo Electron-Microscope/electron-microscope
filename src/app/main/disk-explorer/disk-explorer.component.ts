@@ -5,6 +5,7 @@ import { DiskExplorerService } from './shared/disk-explorer.service';
 import { resolve } from 'path';
 import { colors } from '../../../colors';
 import { HostListener } from '@angular/core/src/metadata/directives';
+import { OverlayService } from '../shared/overlay.service';
 const generateSteps = require('color-stepper').generateSteps;
 
 @Component({
@@ -63,7 +64,7 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
     }]
   };
 
-  constructor(private diskExplorerService: DiskExplorerService, private ngZone: NgZone) {
+  constructor(private diskExplorerService: DiskExplorerService, private overlayService : OverlayService) {
   }
 
   ngOnInit() {
@@ -82,11 +83,13 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
   }
 
   private showDir(dir: string) {
+    this.overlayService.noDisplay = false;
     const sizesPrms = this.diskExplorerService.getEntries(dir);
 
 
     sizesPrms.then((sizes) => {
       this.dataAvailable = true;
+      this.overlayService.noDisplay = true;
 
       const sorted = sizes.sort(function(a, b) {
         if (a.size == b.size) { return 0; }
