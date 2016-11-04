@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, globalShortcut} = require('electron');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -18,6 +18,11 @@ function createWindow () {
 
   // remove the default menu bar
   win.setMenu(null);
+
+  // set fullscreen keyboard shortcut
+  globalShortcut.register("CommandOrControl+F", () => {
+    win.setFullScreen(!win.isFullScreen());
+  });
 
   // Emitted when the window is closed.
   win.on('closed', () => {
