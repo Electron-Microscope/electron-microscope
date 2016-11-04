@@ -82,7 +82,7 @@ export class DiskExplorerService {
                   name: entry,
                   size: null,
                   directory: false
-                }
+                };
               });
           })
         );
