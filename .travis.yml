@@ -9,7 +9,18 @@ cache:
 env:
   global:
     secure: iDWEm2Hzb1e02wVAs0m7t1ebc3bcVs4XlAAWBtvcKtBa5DF3fnLyVMInnDGVlQ8huuUVIh/vxJxYsB3YS3941NNEvbOlr7c2YT+a6ncOGg0qlGeGGE5PqmK2Inah8iyWsY+PhlitDp3VfHfvuKbHD86+lDzuxhz56ZjZbrm69/a2NdXgzhpDY93opyxExX73ioY7asBTqn7nU48FGWBW8wE1/HAqgsLyS+hE/Ky0zOq5HDa6yxmENXI0fHKWIj6haS0l4QU0LWqWun0klAWRPJHRVWKW5Im05f3Ok48Ey+Ra/fA9RLhZsMiByC5anwHc+VoD0rpDFSKCfsx3fQP7oZEs429L41OTSrwVigdN6ROYJOqNAjRkjlxXPqxrCSCcg92vk5KMDSuAGhFA4e8Ca3hHQiQ7O0D4q4uABEvOjfjXyd3nd6Zc4aKZ4UfXwlC3P2EW+F1KmExUvuVZ8dh98Wo8mazVETN2sSPwoukmDHo4gNnoz8AHE4zFxqUiESwHuv7s6tCut4rDh7sxGXHyjofHy15lCL5iNwrQyVDZ7OMN3ubRqJ1nlccVzBuJT0bfASb3bozZYbosUC00AxtUPwqfvZky2fDiShrSy3mGpHU/SJI6XgOB7aUvXfpXpsKuu0//4VJ/PYyeQcFHMaV3VwtgHnpmVVKXWD23YLTy1Wg=
-script: npm run lint && npm run test:ci
+# install git lfs
+#   see https://github.com/travis-ci/travis-ci/issues/3634
+before_install:
+- mkdir -p $HOME/bin
+- wget https://github.com/github/git-lfs/releases/download/v1.1.2/git-lfs-linux-amd64-1.1.2.tar.gz
+- tar xvfz git-lfs-linux-amd64-1.1.2.tar.gz
+- mv git-lfs-1.1.2/git-lfs $HOME/bin/git-lfs
+- export PATH=$PATH:$HOME/bin/
+script: 
+  - git lfs pull
+  - npm run lint 
+  - npm run test:ci
 after_success:
 - "./build/travis-ci.package.sh"
 - "./build/travis-ci.deploy.sh"
