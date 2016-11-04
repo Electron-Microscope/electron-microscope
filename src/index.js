@@ -2,11 +2,11 @@ const {app, BrowserWindow} = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let win
+let win;
 
 function createWindow () {
   // Create the browser window.
-  win = new BrowserWindow();
+  win = new BrowserWindow({icon: `${__dirname}/assets/Saxsys_EM-Logo_artwork_black.png`});
   win.maximize();
 
   // and load the index.html of the app.

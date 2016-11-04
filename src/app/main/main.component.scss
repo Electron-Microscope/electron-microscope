@@ -41,7 +41,7 @@ $std-increment: 64px;
   top: 0; left: 0; bottom: 0; right: 0;
 }
 
-.toolbar-content > img {
+.toolbar-content > .saxsys_logo {
   max-width: 145px;
   position: absolute;
   top:13px;
@@ -61,4 +61,5 @@ $std-increment: 64px;
   vertical-align: middle;
   display: inline-block;
   position: relative;
+  max-width: 230px;
 }
