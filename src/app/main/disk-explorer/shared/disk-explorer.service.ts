@@ -5,7 +5,8 @@ import { resolve as pathResolve } from 'path';
 @Injectable()
 export class DiskExplorerService {
 
-  constructor() { }
+  constructor() {
+  }
 
   public getHumanReadableSize(size: number): string {
     let decimalPower = 1;
@@ -60,14 +61,14 @@ export class DiskExplorerService {
             })
               .then((entryStat: {isDirectory: Function, size: number}) => {
                 if (entryStat.isDirectory()) {
-                   return this.getEntries(pathResolve(path, entry))
-                      .then(sizes => {
-                        return {
-                          name: entry,
-                          size: sizes.reduce((acc, curr) => acc + curr.size, 0),
-                          directory: true
-                        };
-                      });
+                  return this.getEntries(pathResolve(path, entry))
+                    .then(sizes => {
+                      return {
+                        name: entry,
+                        size: sizes.reduce((acc, curr) => acc + curr.size, 0),
+                        directory: true
+                      };
+                    });
                 } else {
                   return {
                     name: entry,
@@ -75,6 +76,13 @@ export class DiskExplorerService {
                     directory: false
                   };
                 }
+              })
+              .catch((_) => {
+                return {
+                  name: entry,
+                  size: null,
+                  directory: false
+                };
               });
           })
         );
