@@ -59,7 +59,10 @@ export class ProcessExplorerComponent implements OnInit, OnDestroy {
   }
 
   killProcess(pid) {
-    this.processes.killProcess(pid);
+    this.processes.killProcess(pid).then(() => {
+      // re-list processes after killing
+      this.processes.getProcesses().then(data => this.rows = data.map(row => this.convertProcessInformation(row)));
+    });
   }
 
   toggleExpandRow(row) {
