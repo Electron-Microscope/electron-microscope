@@ -5,14 +5,14 @@ then
   echo "Deploying distribution packages to BinTray"
   TAG=$(echo $TRAVIS_TAG | sed 's/v//g')
 
-  ls -al packages
+  cd packages
   
-  for package in ./packages/*; do
+  for package in ./*; do
     [ -d "$package" ] || continue # if not a directory, skip
 
     dirname="$(basename "${package}")"
     tar -czf "$dirname.tar.gz" $package
-    zip "$dirname.zip" $package
+    zip "$dirname.zip" -r $package
 
     curl -T "$dirname.tar.gz" -udevwurm:$BINTRAY_API_KEY "https://api.bintray.com/content/electron-microscope/electron-micrsocope/electron-microscope-stable/$TAG/$dirname.tar.gz"
     curl -T "$dirname.zip" -udevwurm:$BINTRAY_API_KEY "https://api.bintray.com/content/electron-microscope/electron-micrsocope/electron-microscope-stable/$TAG/$dirname..zip"
