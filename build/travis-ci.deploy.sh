@@ -12,7 +12,7 @@ then
 
     dirname="$(basename "${package}")"
     tar -czf "$dirname.tar.gz" $package
-    zip "$dirname.zip" -r $package
+    zip -q "$dirname.zip" -r $package
 
     curl -T "$dirname.tar.gz" -udevwurm:$BINTRAY_API_KEY "https://api.bintray.com/content/electron-microscope/electron-micrsocope/electron-microscope-stable/$TAG/$dirname.tar.gz"
     curl -T "$dirname.zip" -udevwurm:$BINTRAY_API_KEY "https://api.bintray.com/content/electron-microscope/electron-micrsocope/electron-microscope-stable/$TAG/$dirname..zip"
