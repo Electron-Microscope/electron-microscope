@@ -6,6 +6,7 @@ import { resolve } from 'path';
 import { colors } from '../../../colors';
 import { HostListener } from '@angular/core/src/metadata/directives';
 import { OverlayService } from '../shared/overlay.service';
+import { homedir } from 'os';
 const generateSteps = require('color-stepper').generateSteps;
 
 @Component({
@@ -27,7 +28,7 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
     return .5 - Math.random();
   });
 
-  private currentPath = process.cwd();
+  private currentPath = homedir();
   private allFiles: Array<{ name: string, size: number, color: string, directory: boolean }> = [];
   private options: HighchartsOptions = {
     chart: {
