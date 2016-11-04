@@ -80,7 +80,7 @@ export class DiskExplorerService {
               .catch((_) => {
                 return {
                   name: entry,
-                  size: -1,
+                  size: null,
                   directory: false
                 }
               });

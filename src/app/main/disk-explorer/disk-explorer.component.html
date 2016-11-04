@@ -19,7 +19,7 @@
           </h3>
           <p md-line>
             <span>Size: </span>
-            <span> {{diskExplorerService.getHumanReadableSize(e.size)}} </span>
+            <span> {{e.size ? diskExplorerService.getHumanReadableSize(e.size) : '?'}} </span>
           </p>
         </md-list-item>
       </md-list>
