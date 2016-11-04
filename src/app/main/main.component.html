@@ -1,3 +1,11 @@
+<div [class.noDisplay]="overlayService.noDisplay" class="overlay">
+</div>
+
+<!--<div [class.noDisplay]="overlayService.noDisplay" class="overlaySp">
+  Calculating size...<br />
+  <md-progress-bar mode="indeterminate"></md-progress-bar>
+</div>!-->
+
 <md-sidenav-layout class="main-layout">
   <md-sidenav #sidenav align="start" [mode]="sidenavMode" [opened]="sidenavOpen" (close)="sidenavOpen=false" (open)="sidenavOpen=true"
               class="sidenav">

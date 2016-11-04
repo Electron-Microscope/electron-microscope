@@ -7,6 +7,7 @@ import { routing } from './main.routing';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { DiskExplorerModule } from './disk-explorer/disk-explorer.module';
 import { ProcessExplorerModule } from './process-explorer/process-explorer.module';
+import { OverlayService } from './shared/overlay.service';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { ProcessExplorerModule } from './process-explorer/process-explorer.modul
   ],
   exports: [
     MainComponent
-  ]
+  ],
+  providers: [OverlayService]
 })
 export class MainModule { }

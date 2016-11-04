@@ -1,4 +1,6 @@
 import { Component, OnInit, NgZone, HostListener } from '@angular/core';
+import { OverlayService } from './shared/overlay.service';
+
 
 @Component({
   selector: 'em-main',
@@ -9,7 +11,9 @@ export class MainComponent implements OnInit {
   private _sidenavOpen = false;
   private sidenavMode = 'over';
 
-  constructor(private ngZone: NgZone) { }
+
+
+  constructor(private ngZone: NgZone, private overlayService: OverlayService) { }
 
   ngOnInit() {
     this.setSidenavMode();
