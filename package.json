@@ -11,7 +11,7 @@
     "build": "ng build",
     "build:prod": "ng build --prod",
     "package:linux": "electron-packager . electron-microscope-$npm_package_version --out=packages --platform=linux --arch=all --overwrite --icon=icons/icon.ico",
-    "package:mac": "electron-packager . electron-microscope-$npm_package_version --out=packages --platform=darwin --arch=all --overwrite --icon=icons/icon.hqx",
+    "package:mac": "electron-packager . electron-microscope-$npm_package_version --out=packages --platform=darwin --arch=all --overwrite --icon=icons/icon.icns",
     "package:win": "electron-packager . electron-microscope-$npm_package_version --out=packages --platform=win32 --arch=all --overwrite --icon=icons/icon.ico",
     "package:all": "electron-packager . electron-microscope-$npm_package_version --all --overwrite",
     "lint": "tslint \"src/**/*.ts\"",
