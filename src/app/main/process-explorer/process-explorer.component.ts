@@ -82,8 +82,10 @@ export class ProcessExplorerComponent implements OnInit, OnDestroy {
   }
 
   removeSubscription() {
-    this.dataSubscription.unsubscribe();
-    this.dataSubscription = null;
+    if (this.dataSubscription) {
+      this.dataSubscription.unsubscribe();
+      this.dataSubscription = undefined;
+    }
   }
 
   ngOnDestroy() {
