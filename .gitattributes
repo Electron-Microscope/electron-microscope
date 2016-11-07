@@ -2,3 +2,4 @@
 *.ico filter=lfs diff=lfs merge=lfs -text
 *.HQX filter=lfs diff=lfs merge=lfs -text
 *.hqx filter=lfs diff=lfs merge=lfs -text
+*.xcf filter=lfs diff=lfs merge=lfs -text
