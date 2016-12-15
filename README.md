@@ -20,7 +20,8 @@ To use the app on your system [download](https://bintray.com/electron-microscope
 The project is built by embedding an [Angular 2](https://angular.io/) app into [Electron](http://electron.atom.io/) to give the app full access to the [NodeJs](https://nodejs.org) system APIs and the Electron system integration.
  
 ### Running from source
-To use the project from source, checkout the repository and run `npm install` to install the projects dependencies.
+To use the project from source, checkout the repository and run `npm install` to install the projects dependencies.<br>
+To fully clone this repository you need to have [Git LFS](https://git-lfs.github.com/) installed on your system.
 
 After that you can run `npm run build` (or `npm run build:prod` for more performance but less debugging output) to build the project and `npm run start` to launch the app.
 
