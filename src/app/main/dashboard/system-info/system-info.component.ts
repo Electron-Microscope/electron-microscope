@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SystemInfoService } from './shared/system-info/system-info.service';
-import { dateFormat } from 'dateFormat';
+import * as dateFormat from 'dateformat';
 
 @Component({
   selector: 'em-system-info',
@@ -33,7 +33,6 @@ export class SystemInfoComponent implements OnInit {
     // calculating system start
     this.uptimeDate.setSeconds(sysinfoService.getUptimeSeconds());
     let startupDate = new Date(new Date().valueOf() - this.uptimeDate.valueOf());
-    let dateFormat = require('dateformat');
     this.startup = dateFormat(startupDate, 'dddd, mmmm dS, yyyy, h:MM:ss TT');
 
     // refreshing uptime

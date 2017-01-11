@@ -1,11 +1,10 @@
 "use strict";
-var path = require('path');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
-var atl = require('awesome-typescript-loader');
+var path = require('path');
+var glob_copy_webpack_plugin_1 = require('../plugins/glob-copy-webpack-plugin');
 var base_href_webpack_1 = require('@angular-cli/base-href-webpack');
-var find_lazy_modules_1 = require('./find-lazy-modules');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 function getWebpackCommonConfig(projectRoot, environment, appConfig, baseHref) {
     var appRoot = path.resolve(projectRoot, appConfig.root);
     var appMain = path.resolve(appRoot, appConfig.main);
@@ -15,7 +14,6 @@ function getWebpackCommonConfig(projectRoot, environment, appConfig, baseHref) {
     var scripts = appConfig.scripts
         ? appConfig.scripts.map(function (script) { return path.resolve(appRoot, script); })
         : [];
-    var lazyModules = find_lazy_modules_1.findLazyModules(appRoot);
     var entry = {
         main: [appMain]
     };
@@ -30,8 +28,8 @@ function getWebpackCommonConfig(projectRoot, environment, appConfig, baseHref) {
         target: 'electron-renderer',
         devtool: 'source-map',
         resolve: {
-            extensions: ['', '.ts', '.js'],
-            root: appRoot
+            extensions: ['.ts', '.js'],
+            modules: [path.resolve(projectRoot, 'node_modules')]
         },
         context: path.resolve(__dirname, './'),
         entry: entry,
@@ -40,30 +38,14 @@ function getWebpackCommonConfig(projectRoot, environment, appConfig, baseHref) {
             filename: '[name].bundle.js'
         },
         module: {
-            preLoaders: [
+            rules: [
                 {
+                    enforce: 'pre',
                     test: /\.js$/,
                     loader: 'source-map-loader',
                     exclude: [
                         /node_modules/
                     ]
-                }
-            ],
-            loaders: [
-                {
-                    test: /\.ts$/,
-                    loaders: [
-                        {
-                            loader: 'awesome-typescript-loader',
-                            query: {
-                                useForkChecker: true,
-                                tsconfig: path.resolve(appRoot, appConfig.tsconfig)
-                            }
-                        }, {
-                            loader: 'angular2-template-loader'
-                        }
-                    ],
-                    exclude: [/\.(spec|e2e)\.ts$/]
                 },
                 // in main, load css as raw text
                 {
@@ -112,8 +94,10 @@ function getWebpackCommonConfig(projectRoot, environment, appConfig, baseHref) {
             ]
         },
         plugins: [
-            new webpack.ContextReplacementPlugin(/.*/, appRoot, lazyModules),
-            new atl.ForkCheckerPlugin(),
+            new CopyWebpackPlugin([{
+                context: path.resolve(appRoot),
+                from: "entry.js"
+            }]),
             new HtmlWebpackPlugin({
                 template: path.resolve(appRoot, appConfig.index),
                 chunksSortMode: 'dependency'
@@ -137,21 +121,18 @@ function getWebpackCommonConfig(projectRoot, environment, appConfig, baseHref) {
                 filename: 'inline.js',
                 sourceMapFilename: 'inline.map'
             }),
-            new CopyWebpackPlugin([{
-                context: path.resolve(appRoot),
-                from: "index.js"
-            }]),
-            new CopyWebpackPlugin([{
-                    context: path.resolve(appRoot, appConfig.assets),
-                    from: { glob: '**/*', dot: true },
-                    ignore: ['.gitkeep'],
-                    to: path.resolve(projectRoot, appConfig.outDir, appConfig.assets)
-                }])
+            new glob_copy_webpack_plugin_1.GlobCopyWebpackPlugin({
+                patterns: appConfig.assets,
+                globOptions: { cwd: appRoot, dot: true, ignore: '**/.gitkeep' }
+            })
         ],
         node: {
             fs: 'empty',
-            global: 'window',
+            global: true,
             crypto: 'empty',
+            tls: 'empty',
+            net: 'empty',
+            process: true,
             module: false,
             clearImmediate: false,
             setImmediate: false
@@ -159,4 +140,4 @@ function getWebpackCommonConfig(projectRoot, environment, appConfig, baseHref) {
     };
 }
 exports.getWebpackCommonConfig = getWebpackCommonConfig;
-//# sourceMappingURL=/Users/hans/Sources/angular-cli/packages/angular-cli/angular-cli/models/webpack-build-common.js.map
+//# sourceMappingURL=/Users/hans/Sources/angular-cli/packages/angular-cli/models/webpack-build-common.js.map

@@ -29,7 +29,7 @@ export class LoadAverageComponent implements OnInit, AfterViewInit, OnDestroy {
   private curr15= 0;
 
   private chartColors = colors;
-  private options: HighchartsOptions = {
+  private options: any = {
     chart: {
       width: 448,
       height: 300,

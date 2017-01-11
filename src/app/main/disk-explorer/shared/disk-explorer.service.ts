@@ -47,7 +47,7 @@ export class DiskExplorerService {
         resolve(entries);
       });
     })
-      .then(entries => {
+      .then((entries: string[]) => {
         return Promise.all(entries.map((entry, entryIndex) => {
             return new Promise((resolve, reject) => {
               stat(pathResolve(path, entry), (err, entryStat) => {

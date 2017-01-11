@@ -27,7 +27,7 @@ export class CpuLoadComponent implements OnInit, AfterViewInit {
   private currents: Array<{load: number, speed: number}> = [];
 
   private chartColors = generateSteps(colors, this.cpuLoad.getNumberOfCPUs() + 1);
-  private options: HighchartsOptions = {
+  private options: any = {
     chart: {
       width: 448,
       height: 250,
