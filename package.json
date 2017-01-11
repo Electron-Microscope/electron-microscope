@@ -7,7 +7,8 @@
   "scripts": {
     "clean": "rm -rf dist",
     "postinstall": "cpx webpack-build-common.js node_modules/angular-cli/models && cpx webpack-build-test.js node_modules/angular-cli/models",
-    "start": "electron .",
+    "run": "electron .",
+    "start": "concurrently \"ng serve\" \"electron src/entry.live.js\"",
     "build": "ng build",
     "build:prod": "ng build --prod",
     "package:linux": "electron-packager . electron-microscope-$npm_package_version --out=packages --platform=linux --arch=all --overwrite --icon=icons/icon.ico",
@@ -52,6 +53,7 @@
     "@types/node": "^6.0.42",
     "angular-cli": "1.0.0-beta.19-3",
     "codelyzer": "1.0.0-beta.1",
+    "concurrently": "^3.1.0",
     "copy-webpack-plugin": "^4.0.1",
     "cpx": "^1.5.0",
     "electron": "^1.4.1",
