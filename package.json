@@ -47,11 +47,13 @@
   },
   "devDependencies": {
     "@types/dateformat": "^1.0.1",
+    "@types/electron": "^1.4.31",
     "@types/jasmine": "^2.2.30",
     "@types/node": "^6.0.42",
     "angular-cli": "1.0.0-beta.19-3",
     "codelyzer": "1.0.0-beta.1",
     "copy-webpack-plugin": "^4.0.1",
+    "electron": "^1.4.1",
     "electron-packager": "^8.2.0",
     "jasmine-core": "2.4.1",
     "jasmine-spec-reporter": "2.5.0",
