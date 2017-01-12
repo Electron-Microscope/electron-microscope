@@ -43,7 +43,8 @@ export class ProcessesService {
   }
 
   getProcessesInInterval(interval = 0): Observable<Array<ProcessInformation>> {
-    return Observable.interval(interval * 1000).flatMap(this.getProcesses.bind(this));
+    return Observable.interval(interval * 1000)
+      .flatMap(<() => Promise<ProcessInformation[]>>this.getProcesses.bind(this));
   }
 
   getProcesses(): Promise<Array<ProcessInformation>> {

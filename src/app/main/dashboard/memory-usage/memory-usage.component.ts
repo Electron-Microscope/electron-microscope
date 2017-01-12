@@ -27,7 +27,7 @@ export class MemoryUsageComponent implements OnInit, AfterViewInit, OnDestroy  {
   };
 
   private chartColors = colors;
-  private options: HighchartsOptions = {
+  private options: any = {
     chart: {
       width: 448,
       height: 300,

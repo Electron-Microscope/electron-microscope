@@ -30,7 +30,7 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
 
   private currentPath = homedir();
   private allFiles: Array<{ name: string, size: number, color: string, directory: boolean }> = [];
-  private options: HighchartsOptions = {
+  private options: any = {
     chart: {
       plotBackgroundColor: null,
       plotBorderWidth: null,

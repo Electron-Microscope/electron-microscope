@@ -4,13 +4,10 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
-    browsers: ['Chrome', 'PhantomJS'],
     frameworks: ['jasmine', 'angular-cli'],
     plugins: [
-      require('karma-mocha-reporter'),
       require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-phantomjs-launcher'),
+      require('karma-electron'),
       require('karma-remap-istanbul'),
       require('angular-cli/plugins/karma')
     ],
@@ -30,12 +27,17 @@ module.exports = function (config) {
       config: './angular-cli.json',
       environment: 'dev'
     },
-    reporters: ['mocha', 'karma-remap-istanbul'],
+    reporters: config.angularCli && config.angularCli.codeCoverage
+              ? ['progress', 'karma-remap-istanbul']
+              : ['progress'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['Electron'],
+    client: {
+      useIframe: false
+    },
     singleRun: false
   });
 };
