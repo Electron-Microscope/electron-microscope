@@ -12,28 +12,6 @@ $std-increment: 64px;
   height: 100%;
 }
 
-.logo-container {
-  margin-top: 52px;
-}
-
-.logo {
-  width: 100%;
-  height: 176px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.85;
-}
-
-#logo-ng {
-  background-image: url("assets/angular.svg");
-}
-
-#logo-el {
-  margin-top: 52px;
-  background-image: url("assets/electron.svg");
-}
-
 .toolbar {
   @include md-elevation(4);
 }
@@ -97,6 +75,7 @@ $std-increment: 64px;
 .logo {
   width: 100%;
   height: 176px;
+  margin-top: 52px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -108,7 +87,6 @@ $std-increment: 64px;
 }
 
 #logo-ng {
-  margin-top: 52px;
   background-image: url("assets/angular.svg");
 }
 
