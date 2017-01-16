@@ -4,6 +4,10 @@
 <md-sidenav-layout class="main-layout">
     <md-sidenav #sidenav align="start" [mode]="sidenavMode" [opened]="sidenavOpen" (close)="sidenavOpen=false" (open)="sidenavOpen=true"
                 class="sidenav">
+      <div id="em-logo-wrapper">
+        <img src="assets/Saxsys_EM-Logo_black.png" />
+      </div>
+
         <em-modules-nav (moduleChosen)="sidenavOpen=false"></em-modules-nav>
         <div class="logo-container">
             <div class="logo" id="logo-ng"></div>
