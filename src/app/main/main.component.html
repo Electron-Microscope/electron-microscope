@@ -20,7 +20,7 @@
         <a (click)="sidenavOpen=true" class="menu-icon" [style.display]="sidenavMode == 'side' ? 'none' : 'inline-block'">
           <md-icon>menu</md-icon>
         </a>
-       <img class="title" src="assets/Saxsys_EM-Logo_white.png"/>
+       <img class="title" src="assets/Saxsys_EM-Logo_white.png" [style.display]="sidenavMode == 'side' ? 'none' : 'inline-block'">
       <img class="saxsys_logo" src="assets/SaxSysLogo.png"/>
     </span>
     </md-toolbar>
