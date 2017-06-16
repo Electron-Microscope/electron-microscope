@@ -5,7 +5,7 @@ import { ModulesNavComponent } from './modules-nav.component';
 
 describe('Component: ModulesNav', () => {
   it('should create an instance', () => {
-    let component = new ModulesNavComponent();
+    const component = new ModulesNavComponent();
     expect(component).toBeTruthy();
   });
 });

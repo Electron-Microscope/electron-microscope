@@ -27,10 +27,10 @@
 
   <em-dashboard-card-actions>
     <md-button-toggle-group [value]="detailsView" (change)="detailsView = $event.value">
-      <md-button-toggle value="text">
+      <md-button-toggle [value]="'text'">
         <md-icon>list</md-icon>
       </md-button-toggle>
-      <md-button-toggle value="chart">
+      <md-button-toggle [value]="'chart'">
         <md-icon>show_chart</md-icon>
       </md-button-toggle>
     </md-button-toggle-group>

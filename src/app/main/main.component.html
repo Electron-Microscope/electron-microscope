@@ -1,12 +1,7 @@
-<div [class.noDisplay]="overlayService.noDisplay" class="overlay">
+<div [class.noDisplay]="noDisplayClass" class="overlay">
 </div>
 
-<!--<div [class.noDisplay]="overlayService.noDisplay" class="overlaySp">
-  Calculating size...<br />
-  <md-progress-bar mode="indeterminate"></md-progress-bar>
-</div>!-->
-
-<md-sidenav-layout class="main-layout">
+<md-sidenav-container class="main-layout">
   <md-sidenav #sidenav align="start" [mode]="sidenavMode" [opened]="sidenavOpen" (close)="sidenavOpen=false" (open)="sidenavOpen=true"
               class="sidenav">
     <em-modules-nav (moduleChosen)="sidenavOpen=false"></em-modules-nav>
@@ -22,4 +17,4 @@
     </span>
   </md-toolbar>
   <router-outlet></router-outlet>
-</md-sidenav-layout>
+</md-sidenav-container>

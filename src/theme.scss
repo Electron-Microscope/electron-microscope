@@ -1,9 +1,7 @@
-@import '~@angular/material/core/theming/_all-theme.scss';
-@import '~@angular/material/core/theming/_palette.scss';
-@import '~@angular/material/core/theming/_theming.scss';
+@import '~@angular/material/theming';
 
 // Include non-theme styles for core.
-@include md-core();
+@include mat-core();
 
 $md-ripple-background-color: rgba(0, 0, 0, 0.0588);
 $black-87-opacity: rgba(black, 0.87);
@@ -35,9 +33,9 @@ $colors-accent: (
   )
 );
 
-$palette-primary: md-palette($colors-primary);
-$palette-accent: md-palette($colors-accent);
-$theme: md-light-theme($palette-primary, $palette-accent);
+$palette-primary: mat-palette($colors-primary);
+$palette-accent: mat-palette($colors-accent);
+$theme: mat-light-theme($palette-primary, $palette-accent);
 
 @include angular-material-theme($theme);
 

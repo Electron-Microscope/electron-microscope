@@ -1,13 +1,13 @@
-@import "~@angular/material/core/style/_variables.scss";
+@import "~@angular/material/theming";
 @import "../../../theme.scss";
 
 $icon-keyline: 16px;
 $description-keyline: 72px;
-$icon-size: $md-body-font-size-base;
+$icon-size: $mat-body-font-size-base;
 
 .nav-list {
-  font-family: "Roboto Medium", $md-font-family;
-  font-size: 1.2 * $md-body-font-size-base;
+  font-family: "Roboto Medium", $mat-font-family;
+  font-size: 1.2 * $mat-body-font-size-base;
 
   display: flex;
   flex-direction: column;

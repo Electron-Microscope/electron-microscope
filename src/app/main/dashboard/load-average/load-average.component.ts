@@ -3,7 +3,7 @@ import {
   AfterViewInit
 } from '@angular/core';
 import { LoadAverageService } from './shared/load-average/load-average.service';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Rx';
 import { ChartComponent } from 'angular2-highcharts';
 import { colors } from '../../../../colors';
 
@@ -21,15 +21,15 @@ export class LoadAverageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private subscriptions: Array<Subscription> = [];
 
-  private interval: number = 1;
-  private history: number = 50;
+  private interval = 1;
+  private history = 50;
 
-  private curr1 = 0;
-  private curr5 = 0;
-  private curr15= 0;
+  public curr1 = 0;
+  public curr5 = 0;
+  public curr15= 0;
 
   private chartColors = colors;
-  private options: any = {
+  public options: any = {
     chart: {
       width: 448,
       height: 300,

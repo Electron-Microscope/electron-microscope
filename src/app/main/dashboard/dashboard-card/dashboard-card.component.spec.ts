@@ -5,7 +5,7 @@ import { DashboardCardComponent } from './dashboard-card.component';
 
 describe('Component: DashboardCard', () => {
   it('should create an instance', () => {
-    let component = new DashboardCardComponent();
+    const component = new DashboardCardComponent();
     expect(component).toBeTruthy();
   });
 });

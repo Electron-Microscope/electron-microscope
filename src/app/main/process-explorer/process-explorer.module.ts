@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProcessExplorerComponent } from './process-explorer.component';
-import { Angular2DataTableModule } from 'angular2-data-table';
-import { MaterialModule } from '@angular/material';
+import { MdButtonModule, MdCardModule } from '@angular/material';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   imports: [
     CommonModule,
-    Angular2DataTableModule,
-    MaterialModule
+    NgxDatatableModule,
+    MdCardModule,
+    MdButtonModule,
   ],
   declarations: [
     ProcessExplorerComponent

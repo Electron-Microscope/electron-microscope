@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Rx';
 import { arch, hostname, release, type, uptime, userInfo, homedir } from 'os';
 import { totalmem } from 'os';
 import { cpus } from 'os';

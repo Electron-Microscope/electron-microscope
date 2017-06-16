@@ -9,11 +9,11 @@ import { OverlayService } from './shared/overlay.service';
 })
 export class MainComponent implements OnInit {
   private _sidenavOpen = false;
-  private sidenavMode = 'over';
+  public sidenavMode = 'over';
 
 
 
-  constructor(private ngZone: NgZone, private overlayService: OverlayService) { }
+  constructor(private overlayService: OverlayService) { }
 
   ngOnInit() {
     this.setSidenavMode();
@@ -36,5 +36,9 @@ export class MainComponent implements OnInit {
     } else {
       this.sidenavMode =  'over';
     }
+  }
+
+  get noDisplayClass(): boolean {
+    return this.overlayService.noDisplay;
   }
 }

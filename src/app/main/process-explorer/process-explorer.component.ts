@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { ColumnMode, TableColumn, TableOptions, DataTable } from 'angular2-data-table';
+import { DatatableComponent, TableColumn } from '@swimlane/ngx-datatable';
 import { ProcessInformation, ProcessesService } from './shared/processes/processes.service';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Rx';
 
 @Component({
   selector: 'em-process-explorer',
@@ -12,28 +12,20 @@ import { Subscription } from 'rxjs';
   ]
 })
 export class ProcessExplorerComponent implements OnInit, OnDestroy {
-  @ViewChild(DataTable)
-  private table: DataTable;
+  @ViewChild(DatatableComponent)
+  private table: DatatableComponent;
 
   private dataSubscription: Subscription = null;
 
   private interval = 5;
 
-  private rows: Array<{pid: string, name: string, cpu: string, memory: string}> = [];
-
-  private options = new TableOptions({
-    columnMode: ColumnMode.force,
-    headerHeight: 50,
-    footerHeight: 50,
-    detailRowHeight: 56,
-    rowHeight: 'auto',
-    columns: [
-      new TableColumn({ name: 'Pid', comparator: this.sorter.bind(this) }),
-      new TableColumn({ name: 'Name', sortable: true, comparator: this.sorter.bind(this) }),
-      new TableColumn({ name: 'Cpu', comparator: this.sorter.bind(this) }),
-      new TableColumn({ name: 'Memory', comparator: this.sorter.bind(this) }),
-    ]
-  });
+  public rows: Array<{ pid: string, name: string, cpu: string, memory: string }> = [];
+  public columns: Array<TableColumn> = [
+    {name: 'Pid', comparator: this.sorter.bind(this)},
+    {name: 'Name', sortable: true, comparator: this.sorter.bind(this)},
+    {name: 'Cpu', comparator: this.sorter.bind(this)},
+    {name: 'Memory', comparator: this.sorter.bind(this)},
+  ];
 
   constructor(private processes: ProcessesService) {
     this.processes.getProcesses().then(data => this.rows = data.map(row => this.convertProcessInformation(row)));
@@ -43,7 +35,7 @@ export class ProcessExplorerComponent implements OnInit, OnDestroy {
     this.setupSubscription();
   }
 
-  convertProcessInformation(inf: ProcessInformation): {pid: string, name: string, cpu: string, memory: string} {
+  convertProcessInformation(inf: ProcessInformation): { pid: string, name: string, cpu: string, memory: string } {
     return {
       pid: inf.pid,
       name: inf.name,
@@ -55,7 +47,7 @@ export class ProcessExplorerComponent implements OnInit, OnDestroy {
   sorter(rows, dirs) {
     this.processes.sortingProperty = dirs[0].prop;
     this.processes.sortingOrder = dirs[0].dir == 'desc' ? 1 : -1;
-    this.processes.getProcesses().then(data =>  this.rows = data.map(row => this.convertProcessInformation(row)));
+    this.processes.getProcesses().then(data => this.rows = data.map(row => this.convertProcessInformation(row)));
   }
 
   killProcess(pid) {
@@ -67,7 +59,7 @@ export class ProcessExplorerComponent implements OnInit, OnDestroy {
 
   toggleExpandRow(row) {
     this.toggleSubscription();
-    this.table.toggleExpandRow(row);
+    this.table.rowDetail.toggleExpandRow(row);
   }
 
   toggleSubscription() {

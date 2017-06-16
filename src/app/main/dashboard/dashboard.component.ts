@@ -8,7 +8,7 @@ import { type } from 'os';
 })
 export class DashboardComponent implements OnInit {
 
-  private userOS = type();
+  public userOS = type();
 
   constructor() { }
 

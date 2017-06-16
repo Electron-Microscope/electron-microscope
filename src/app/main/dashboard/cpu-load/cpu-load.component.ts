@@ -1,9 +1,8 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { CpuLoadService } from './shared/cpu-load/cpu-load.service';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ChartComponent } from 'angular2-highcharts';
-import { ViewChild } from '@angular/core/src/metadata/di';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Rx';
 import { colors } from '../../../../colors';
+import { CpuLoadService } from './shared/cpu-load/cpu-load.service';
 const generateSteps = require('color-stepper').generateSteps;
 
 @Component({
@@ -20,14 +19,14 @@ export class CpuLoadComponent implements OnInit, AfterViewInit {
 
   private subscriptions: Array<Subscription> = [];
 
-  private interval: number = 1;
-  private history: number = 50;
+  private interval = 1;
+  private history = 50;
 
-  private currentTotal = {load: 0, speed: 0};
-  private currents: Array<{load: number, speed: number}> = [];
+  public currentTotal = {load: 0, speed: 0};
+  public currents: Array<{load: number, speed: number}> = [];
 
   private chartColors = generateSteps(colors, this.cpuLoad.getNumberOfCPUs() + 1);
-  private options: any = {
+  public options: any = {
     chart: {
       width: 448,
       height: 250,
@@ -54,7 +53,7 @@ export class CpuLoadComponent implements OnInit, AfterViewInit {
     ])
   };
 
-  private detailsView = 'chart';
+  public detailsView = 'chart';
 
   constructor(private cpuLoad: CpuLoadService) { }
 

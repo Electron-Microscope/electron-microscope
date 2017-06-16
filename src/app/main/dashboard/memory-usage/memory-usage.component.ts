@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { MemoryUsageService } from './shared/memory-usage/memory-usage.service';
 import { ChartComponent } from 'angular2-highcharts';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Rx';
 import { colors } from '../../../../colors';
 
 @Component({
@@ -27,7 +27,7 @@ export class MemoryUsageComponent implements OnInit, AfterViewInit, OnDestroy  {
   };
 
   private chartColors = colors;
-  private options: any = {
+  public options: any = {
     chart: {
       width: 448,
       height: 300,

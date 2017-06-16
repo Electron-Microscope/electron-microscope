@@ -2,22 +2,26 @@
   <md-card-title>Running Processes</md-card-title>
 
   <md-card-content>
-    <datatable
+    <ngx-datatable
       #table
-      class='material'
-      [rows]='rows'
-      [options]='options'
+      class="material expandable"
+      [rows]="rows"
+      [columns]="columns"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="'auto'"
       (onRowClick)="toggleExpandRow($event.row)"
     >
-      <datatable-row-detail-template>
-        <template let-row="row">
+      <ngx-datatable-row-detail [rowHeight]="56">
+        <ng-template let-row="row">
           <div>
             <button md-raised-button color="warn" (click)="killProcess(row.pid); toggleExpandRow(row)" class="row-action-button">Kill</button>
             <button md-raised-button color="primary" (click)="toggleExpandRow(row)" class="row-action-button">Done</button>
           </div>
-        </template>
-      </datatable-row-detail-template>
-    </datatable>
+        </ng-template>
+      </ngx-datatable-row-detail>
+    </ngx-datatable>
   </md-card-content>
 </md-card>
 
