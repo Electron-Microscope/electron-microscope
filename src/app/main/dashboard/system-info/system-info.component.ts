@@ -9,16 +9,16 @@ import * as dateFormat from 'dateformat';
   providers: [SystemInfoService]
 })
 export class SystemInfoComponent implements OnInit {
-  private os: String;
-  private arch: String;
-  private release: String;
-  private user: String;
-  private home: String;
-  private hostname: String;
-  private uptimeDate = new Date(null);
-  private startup: String;
-  private totalMemory: String;
-  private cpus: Array<String>;
+  public os: String;
+  public arch: String;
+  public release: String;
+  public user: String;
+  public home: String;
+  public hostname: String;
+  public uptimeDate = new Date(null);
+  public startup: String;
+  public totalMemory: String;
+  public cpus: Array<String>;
 
   constructor(private sysinfoService: SystemInfoService) {
     this.os = sysinfoService.getOS();
@@ -32,7 +32,7 @@ export class SystemInfoComponent implements OnInit {
 
     // calculating system start
     this.uptimeDate.setSeconds(sysinfoService.getUptimeSeconds());
-    let startupDate = new Date(new Date().valueOf() - this.uptimeDate.valueOf());
+    const startupDate = new Date(new Date().valueOf() - this.uptimeDate.valueOf());
     this.startup = dateFormat(startupDate, 'dddd, mmmm dS, yyyy, h:MM:ss TT');
 
     // refreshing uptime

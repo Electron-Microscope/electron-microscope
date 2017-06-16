@@ -5,7 +5,7 @@ import { LoadAverageComponent } from './load-average.component';
 
 describe('Component: LoadAverage', () => {
   it('should create an instance', () => {
-    let component = new LoadAverageComponent();
+    const component = new LoadAverageComponent(null);
     expect(component).toBeTruthy();
   });
 });

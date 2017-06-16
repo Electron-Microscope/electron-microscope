@@ -5,7 +5,7 @@ import { MainComponent } from './main.component';
 
 describe('Component: Main', () => {
   it('should create an instance', () => {
-    let component = new MainComponent(null);
+    const component = new MainComponent(null);
     expect(component).toBeTruthy();
   });
 });

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { cpus } from 'os';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/observable/interval';
+import 'rxjs/add/operator/timestamp';
+import 'rxjs/add/operator/mergeMap';
 
 @Injectable()
 export class CpuLoadService {
@@ -23,16 +26,18 @@ export class CpuLoadService {
    * measurement time in Unixtime milliseconds (timestamp), the number of the current measurement (sequenceNumber) and
    * the Array of cpu loads (loads) for each core, as well as the load for the whole cpu (last element of loads) as relative numbers
    */
-  public getCPULoadInInterval(interval = 0): Observable<{
+  public getCPULoadInInterval(interval: number = 0): Observable<{
     loads: Array<number>,
     speeds: Array<number>,
     timestamp: Date,
     sequenceNumber: number
   }> {
-    return Observable.interval(interval * 1000).timestamp()
-      .flatMap<{loads: Array<number>, speeds: Array<number>, timestamp: Date, sequenceNumber: number}>(x => {
+    return Observable
+      .interval(interval * 1000)
+      .timestamp()
+      .flatMap(x => {
         return Observable.create(obs => {
-          const loadsPrms = Promise.all(
+          Promise.all(
             cpus().map((val, ind) => this.currentCPULoad(ind))
               .concat(this.currentCPULoad(undefined))
           ).then(loads => {
@@ -69,7 +74,7 @@ export class CpuLoadService {
    *        whole cpu
    * @return {{idle: number, total: number}} idle and total time for the core / the cpu
    */
-  private currentCPUAverage(cpu: number | undefined): {idle: number, total: number} {
+  private currentCPUAverage(cpu: number | undefined): { idle: number, total: number } {
     const cpusInformation = cpu ? [cpus()[cpu]] : cpus();
 
     const times = cpusInformation.reduce((prev, curr) => {
@@ -77,8 +82,8 @@ export class CpuLoadService {
         idle: prev.idle + curr.times.idle,
         total: prev.total + Object.keys(curr.times).reduce((prevTotal, currKey) => prevTotal + curr.times[currKey], 0)
       };
-    }, { idle: 0, total: 0 });
+    }, {idle: 0, total: 0});
 
-    return { idle: times.idle / cpusInformation.length, total: times.total / cpusInformation.length };
+    return {idle: times.idle / cpusInformation.length, total: times.total / cpusInformation.length};
   }
 }

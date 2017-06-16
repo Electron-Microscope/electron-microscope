@@ -6,7 +6,7 @@ import { MemoryUsageService } from './shared/memory-usage/memory-usage.service';
 
 describe('Component: MemoryUsage', () => {
   it('should create an instance', () => {
-    let component = new MemoryUsageComponent(new MemoryUsageService());
+    const component = new MemoryUsageComponent(new MemoryUsageService());
     expect(component).toBeTruthy();
   });
 });

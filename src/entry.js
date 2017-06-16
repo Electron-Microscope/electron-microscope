@@ -10,11 +10,11 @@ function createWindow() {
   win.maximize();
 
   // and load the index.html of the app.
-  win.loadURL(`file://${__dirname}/index.html`)
+  win.loadURL(`file://${__dirname}/index.html`);
 
   // Open the DevTools when in dev mode.
   if (process.env.NODE_ENV == 'development')
-    win.webContents.openDevTools()
+    win.webContents.openDevTools();
 
   // remove the default menu bar
   win.setMenu(null);
@@ -37,7 +37,7 @@ function createWindow() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
+app.on('ready', createWindow);
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
@@ -47,7 +47,7 @@ app.on('window-all-closed', () => {
   ) {
     app.quit()
   }
-})
+});
 
 app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
@@ -56,4 +56,4 @@ app.on('activate', () => {
   ) {
     createWindow()
   }
-})
+});

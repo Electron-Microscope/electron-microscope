@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 const lookup: Function = require('current-processes').get;
 const kill: Function = require('ps-node').kill;
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Rx';
 
 export class ProcessInformation {
   pid: string;

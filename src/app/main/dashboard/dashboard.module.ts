@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
-import { MaterialModule } from '@angular/material';
+import { MdButtonToggleModule, MdCardModule, MdIconModule } from '@angular/material';
 import { LoadAverageComponent } from './load-average/load-average.component';
 import {
   DashboardCardComponent, DashboardCardContentComponent,
@@ -15,7 +15,9 @@ import { CpuLoadComponent } from './cpu-load/cpu-load.component';
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule.forRoot(),
+    MdCardModule,
+    MdButtonToggleModule,
+    MdIconModule,
     ChartModule
   ],
   declarations: [

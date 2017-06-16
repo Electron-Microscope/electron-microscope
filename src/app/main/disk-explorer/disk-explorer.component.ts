@@ -1,12 +1,9 @@
-import { Component, OnInit, AfterViewInit, ChangeDetectorRef, NgZone } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ChartComponent } from 'angular2-highcharts';
-import { ViewChild } from '@angular/core/src/metadata/di';
-import { DiskExplorerService } from './shared/disk-explorer.service';
 import { resolve } from 'path';
 import { colors } from '../../../colors';
-import { HostListener } from '@angular/core/src/metadata/directives';
 import { OverlayService } from '../shared/overlay.service';
-import { homedir } from 'os';
+import { DiskExplorerService } from './shared/disk-explorer.service';
 const generateSteps = require('color-stepper').generateSteps;
 
 @Component({
@@ -20,7 +17,7 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
   private chart: ChartComponent;
 
   private detailedEntries = 10;
-  private dataAvailable = false;
+  public dataAvailable = false;
 
   // colors for the entries and one default color (last element is default), which are
   // shuffled to avoid similar colors next to each other
@@ -28,9 +25,9 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
     return .5 - Math.random();
   });
 
-  private currentPath = homedir();
-  private allFiles: Array<{ name: string, size: number, color: string, directory: boolean }> = [];
-  private options: any = {
+  private currentPath = process.cwd();
+  public allFiles: Array<{ name: string, size: number, color: string, directory: boolean }> = [];
+  public options: any = {
     chart: {
       plotBackgroundColor: null,
       plotBorderWidth: null,
@@ -112,8 +109,8 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
 
       const chartEntries = first.concat(other);
 
-      let totalSize = chartEntries.reduce((acc, curr) => acc + curr.size, 0);
-      let totalSizeString = this.diskExplorerService.getHumanReadableSize(totalSize);
+      const totalSize = chartEntries.reduce((acc, curr) => acc + curr.size, 0);
+      const totalSizeString = this.diskExplorerService.getHumanReadableSize(totalSize);
 
       chartEntries.forEach(size => {
         this.chart.chart.series[0].addPoint({
@@ -129,7 +126,7 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
 
   }
 
-  private changeDir(newDir: string) {
+  public changeDir(newDir: string) {
     this.currentPath = resolve(this.currentPath, newDir);
 
     // clear
@@ -139,6 +136,10 @@ export class DiskExplorerComponent implements OnInit, AfterViewInit {
 
     // refresh
     this.showDir(this.currentPath);
+  }
+
+  public getHumanReadableSize(size: number) {
+    return this.diskExplorerService.getHumanReadableSize(size);
   }
 
 }

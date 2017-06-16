@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '@angular/material';
+import { MdIconModule, MdSidenavModule, MdToolbarModule } from '@angular/material';
 import { MainComponent } from './main.component';
 import { ModulesNavComponent } from './modules-nav/modules-nav.component';
 import { routing } from './main.routing';
@@ -12,7 +12,9 @@ import { OverlayService } from './shared/overlay.service';
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule.forRoot(),
+    MdToolbarModule,
+    MdSidenavModule,
+    MdIconModule,
     routing,
     DashboardModule,
     DiskExplorerModule,
